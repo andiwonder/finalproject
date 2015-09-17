@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> New User </title>
+</head>
+<body>
+</br>
+<h1> Sign up below! </h1>
+
+<form method="POST" action="/users">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+	User name:
+	<input type="text" name="user_name"/><br>
+	Password:
+	<input type="text" name="password"/><br>
+	Skype id:
+	<input type="text" name="skype_id"/><br>
+	Steam id:
+	<input type="text" name="steam_id"/><br>
+	Solo MMR:
+	<input type="text" name="solo_mmr"/><br>
+	Party MMR:
+	<input type="text" name="party_mmr"/><br>
+	<button>Create</button>
+	
+</form>
+
+
+
+</body>
+
+
+</html>
