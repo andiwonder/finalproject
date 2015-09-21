@@ -4,12 +4,17 @@ class SessionsController < ApplicationController
 	end
 
 	def create
+		puts params[:user_name]
 	    user = User.find_by({user_name: params[:user_name]})
 
-	    if user && user.password == params[:password]
+
+	    if user 
+	    	puts "heyyyyyyyyyyyyyyyyy"
 	      session[:user_id] = user.id
-	      redirect_to '/users/user.id'
+	      	puts user.id
+	      redirect_to '/welcome'
 	    else
+	    	puts "narrrrrrrrrrr"
 	      redirect_to '/sessions/new'
 	    end
 	end

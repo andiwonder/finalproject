@@ -14,10 +14,65 @@
  *= require_self
  */
 
+ ul {
+  width: 100%;
+}
+
+li {
+  display: inline-block;
+  margin-right: -4px;
+  width: 130px;
+}
+li a {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1em;
+  display: block;
+  -moz-transform: skewX(-19deg);
+  -ms-transform: skewX(-19deg);
+  -webkit-transform: skewX(-19deg);
+  transform: skewX(-19deg);
+  width: 100%;
+  min-height: 3em;
+  text-align: center;
+  
+}
+li a span {
+  color: white;
+  position: absolute;
+  box-sizing: border-box;
+  -moz-transform: skewX(19deg);
+  -ms-transform: skewX(19deg);
+  -webkit-transform: skewX(19deg);
+  transform: skewX(19deg);
+  left: 0;
+  width: 100%;
+}
+
+nav{
+  margin-left: 220px;
+  position: relative;
+  bottom: 14px;
+  right: 10px;
+
+}
+.nav_bg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 #header{
 	width: 100%;
 }
 
-body{
-	background: url('./background.png');
+
+#login_container{
+	width: 70%;
+	margin: 0 auto;
 }
+
+
+
+

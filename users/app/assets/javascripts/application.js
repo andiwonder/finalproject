@@ -14,3 +14,25 @@
 //= require jquery_ujs
 //= require turbolinks
 
+//= require ./libraries/underscore
+//= require ./libraries/backbone
+
+//= require ./d3.v3.min.js
+//= require ./profile/RadarChart.js
+//= require ./profile/script.js
+
+//= require ./backbone/models/model.js
+//= require ./backbone/views/view.js
+//= require ./backbone/collections/collection.js
+//= require ./backbone/views/collectionview.js
+//= require ./backbone/routers/router.js
+
+$(document).ready(function(){
+	console.log("swap");
+	swap = new User({id:2});
+	swap.fetch();
+	swapview = new UserView({model:swap});
+
+})
+
+

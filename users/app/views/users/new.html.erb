@@ -3,30 +3,56 @@
 <head>
 	<meta charset="UTF-8">
 	<title> New User </title>
+	<style type="text/css">
+		#main_container{
+			width: 80%;
+			margin: 0 auto;
+
+		}
+
+	</style>
 </head>
 <body>
 </br>
+</br>
 <h1> Sign up below! </h1>
 
-<form method="POST" action="/users">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-	User name:
-	<input type="text" name="user_name"/><br>
-	Password:
-	<input type="text" name="password"/><br>
-	Skype id:
-	<input type="text" name="skype_id"/><br>
-	Steam id:
-	<input type="text" name="steam_id"/><br>
-	Solo MMR:
-	<input type="text" name="solo_mmr"/><br>
-	Party MMR:
-	<input type="text" name="party_mmr"/><br>
-	<button>Create</button>
-	
+<div id="main_container">
+<form method="POST" action="/users" class="ui form">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+<div class="two fields">
+  <div class="field">
+    <label>User Name</label>
+    <input type="text" name="user_name" placeholder="User Name">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="text" name="password" placeholder="Password">
+  </div>
+</div>
+<div class="two fields">
+  <div class="field">
+    <label>Skype ID</label>
+    <input type="text" name="skype_id" placeholder="Skype ID">
+  </div>
+  <div class="field">
+    <label>Steam ID</label>
+    <input type="text" name="steam_id" placeholder="Steam ID">
+  </div>
+</div>
+<div class="two fields">
+  <div class="field">
+    <label>Solo MMR</label>
+    <input type="text" name="solo_mmr" placeholder="Solo MMR">
+  </div>
+  <div class="field">
+    <label>Party MMR</label>
+    <input type="text" name="party_mmr" placeholder="Party MMR">
+  </div>
+</div>
+  <button class="ui button" type="submit">Submit</button>
 </form>
-
-
+</div>
 
 </body>
 

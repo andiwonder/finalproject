@@ -1,13 +1,23 @@
-</br><div class = "login_form">
-  
+</br>
+</br>
+</br>
+<div class = "login_form">
+  <div id="login_container">
 
-  <form method="POST" action="/sessions">
+  <form method="POST" action="/sessions" class="ui form">
   	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-  	<input type="text" name="user_name">
-  	<input type="text" name="password">
-  	<button>Log In</button>
+  	<div class="field">
+    <label>User Name</label>
+    <input type="text" name="user_name" placeholder="User Name">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="text" name="password" placeholder="Password">
+  </div>
+  	<button class="ui button" type="submit">Submit</button>
   </form>
 
+	</div>
 <a href = "/users/new">Create a new account here</a>
 
 </div>
