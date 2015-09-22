@@ -1,0 +1,39 @@
+#main_container{
+	width: 120vh;
+	height: 100vh;
+	padding-left: 20%;
+}
+#match_overview{
+	margin-top: 40px;
+	width: 100%;
+	height: 20%;
+	border: 2px solid blue;
+
+}
+#radiant_side{
+	margin-top: 30px;
+	width: 100%;
+	height: 30%;
+	border: 2px solid green;
+
+}
+#dire_side{
+	margin-top: 30px;
+	width: 100%;
+	height: 30%;
+	border: 2px solid red;
+
+}
+table{
+	font-size: 10px;
+}
+th{
+	/*border: 1px solid black;*/
+}
+tr{
+	border: 5px solid black
+}
+img{
+	width: 24px;
+	height: 24px;
+}
