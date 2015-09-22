@@ -152,12 +152,41 @@ z-index: -1;
       width: 5px;
 } /* this targets the default scrollbar (compulsory) */
 
+#friends_list{
+  margin-right: 0;
+}
+#online{
+  width: 350px;
+  height: 400px;
+  border: 2px solid red;
+  overflow: scroll;
+}
+#offline{
+  width: 350px;
+  height: 400px;
+  border: 2px solid red;
+  overflow: scroll;
+}
+#away{
+  width: 350px;
+  height: 400px;
+  border: 2px solid red;
+  overflow: scroll;
+}
 
+#online li, #offline li, #away li{
+  margin: 0;
+  padding: 0;
+  width: 100px;
+  display: inline-block;
+}
 
-
-
-
-
+#list{
+  width: 350px;
+  height: 600px;
+  overflow: scroll;
+  border: 5px solid yellow;
+}
 
 
 

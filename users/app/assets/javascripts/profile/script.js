@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+console.log("whattttt");
 console.log("script.js");
 
 var w = 180,

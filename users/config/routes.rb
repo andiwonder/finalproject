@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+  root 'users#show'
+  get '/' => 'users#show'
+  get '/welcome' => 'welcome#show'
 
   resources :users
 
+  get '/users/:id/matches' => 'matchs#index'
 
+  get'/users/:id/test' => 'users#test'
 
 
 
@@ -11,10 +16,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  get '/' => 'welcome#index'
-  get '/welcome' => 'welcome#show'
-  get '/blah' => 'welcome#blah'
+ 
 
   get '/sessions/new' => 'sessions#new'
   post '/sessions' => 'sessions#create'
