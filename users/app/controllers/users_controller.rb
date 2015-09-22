@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       }
 
 
-      @friends = HTTParty.get("http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=76561197981778464&relationship=friend")
+      @friends = HTTParty.get("http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=" + @current_user.steam_id + "&relationship=friend")
       @friends_list = []
       @friends['friendslist']['friends'].each do |friend|
         steam_64_id = friend['steamid']
@@ -86,12 +86,42 @@ class UsersController < ApplicationController
         end
       end
 
+      @recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id="+ @current_user.steam_id)
+      @steam_32_id = @current_user.steam_id.to_i - 76561197960265728
+      @games = @recent_matches['result']['matches']
+      @mygames_list = []
+
+
+      @games.each do |game|
+        @mygames_start = game['start_time']
+        @mygames_start_time = Time.at(@mygames_start).strftime("%F %I:%M %p")
+          myObj = {
+            "match_id" => game['match_id'],
+            "start_time" => @mygames_start_time,
+            "lobby_type" => game['lobby_type'],
+          }
+
+        game['players'].each do |player|
+            if player['account_id'] == @steam_32_id
+              @myhero = Champion.find(player['hero_id'])
+              myObj["hero_id"] = player['hero_id']
+              myObj["hero_pic"] =  @myhero['img_url']    
+              myObj["hero_name"] = @myhero['hero_name']
+              myObj["hero_role"] = @myhero['roles']
+              myObj["hero_type"] = @myhero['char_type']
+            end
+        end
+
+
+      @mygames_list.push(myObj)
+
+      end
       
 
 
       respond_to do |format|
         format.html
-        format.json {render json: @online }
+        format.json {render json: @mygames_list}
       end
     else
       redirect_to user_path(actual_user)

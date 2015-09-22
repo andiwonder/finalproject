@@ -4,10 +4,30 @@
   <head>
   <link rel="stylesheet" type="text/css" href="/assets/profile/main-page.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway:100">
-
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="/assets/profile/d3.v3.min.js"></script>
+  <script src="/assets/profile/RadarChart.js"></script>
+  <script type="text/javascript" src="/assets/profile/script.js"></script>
+  <script type="text/javascript" src="/assets/profile/script2.js"></script>
   </head>
   
   <body>
+
+  <img class="nav_bg" src="/assets/dotabg.jpg">
+  <nav role='navigation'>
+    
+    <ul>
+
+      <li><a href="#"><span>Learn</span></a></li>
+      <li class="current"><a href="#"><span>Find</span></a></li>
+      <li><a href="#"><span>Wait</span></a></li>
+      <li><a href="#"><span>About Me</span></a></li>
+    </ul>
+  </nav>
+
+
+
+
   <div id="background-wrapper">
 <!--all your content-->
 
@@ -16,9 +36,10 @@
   <div id="main_display">
     
   <div id="sub_links">
-    <a href="#">PROFILE  /</a>    
-    <a href="#">TROPHIES  /</a>   
-    <a href="#">HEROES</a>
+    <a href="/users/:id/stats">PROFILE  /</a>    
+    <a href="/users/:id/matches">Matches  /</a>
+    <a href="/users/:id/trophies">TROPHIES  /</a>   
+    <a href="/users/:id/heroes">HEROES</a>
   </div>
   <div id="profile_display"></div>
   <div id="profile_stats">
@@ -51,6 +72,8 @@
         
       </div>
       <div id="sub_sub_links_display">
+        
+
         <div id="table-wrapper">
           <div id="table-scroll">
         <table style="width:100%">
@@ -59,15 +82,17 @@
             <th>HERO PLAYED</th> 
             <th>RESULT</th>
             <th>DURATION</th>
-            <th>TYPE</th>
+            <th>Lobby TYPE</th>
           </tr>
+        <% @mygames_list.each do |game| %>
           <tr>
-            <td>9/20/2015 6:58 PM</td>
-            <td><img src="/assets/hero_pics/abaddon.png">Abaddon</td> 
+            <td><%= game['start_time']%></td>
+            <td><img src="<%= game['hero_pic']%>"><%= game['hero_name']%></td> 
             <td>WIN</td>
             <td>46:01</td>
-            <td>RANKED</td>
+            <td><%= game['lobby_type']%></td>
           </tr>
+        <% end %>
         </table>
       </div>
     </div>
@@ -81,13 +106,16 @@
 
   </div>
 
-  <button>Friends</button>
+  <button id="main_btn"><%= @friend_summaries_list.length %> Friends</button>
 
 
   <div id="list">
     
+    <div id="online_btn">
+      <button><%= @online.length %> Online</button>
+    </div>
     <div id="online">
-      <h5>online</h5>
+
       
           <% @online.each do |online| %>
             <li>
@@ -97,9 +125,13 @@
           <% end %>
       
     </div>
-    
+
+
+    <div id="away_btn">
+      <button><%=@away.length%> Away</button>
+    </div>
     <div id="away">
-      <h5>away</h5>
+
       
           <% @away.each do |away| %>
             <li>
@@ -109,9 +141,13 @@
           <% end %>
       
     </div>
+
     
+    <div id="offline_btn">
+      <button><%= @offline.length%>Offline</button>
+    </div>
     <div id="offline">
-      <h5>Offline</h5>
+      
       
           <% @offline.each do |offline| %>
             <li>
@@ -123,12 +159,7 @@
     </div>
       
 </div>
-
-
-
-
 </div>
 
-  </body>
-
+</body>
 </html>
