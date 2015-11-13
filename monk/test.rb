@@ -1,0 +1,1 @@
+puts 2.between?1,3

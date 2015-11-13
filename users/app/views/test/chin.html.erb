@@ -1,0 +1,184 @@
+<!-- <video id="selection_background_movie" src="/assets/background.mov" autoplay loop></video> -->
+<img id="selection_background_gif" loop="infinite" src="/assets/background.gif">
+
+ <div class="matches_menu ui secondary  menu">
+  <a id="matches_submenu_1" class="active item" href="/users">
+    Profile
+  </a>
+  <a id="matches_submenu_2" class="matches_submenu item" href="/chin">
+    Matches
+  </a>
+  <a id="matches_submenu_3" class="item" href="/selection">
+    Heros
+  </a>
+  <a id="matches_submenu_4" class="item">
+    Notes
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <a id="matches_submenu_5" class="ui item">
+      Logout
+    </a>
+  </div>
+</div>
+
+<div id="main_container">
+
+  
+  
+  <div id="card_view_container">
+
+  <% @players.each do |player| %>
+    <% @match = Match.find(player['match_id']) %>
+    <% @slot = player['player_slot'] %>
+    <% rad_win = @match['radiant_win'] %>
+    <% puts rad_win %>
+
+    <% if rad_win == true %>
+    <%  @mywin = "Radiant Win" %>
+    <%  puts "1111111" %>
+    <% elsif rad_win == false %>
+    <%  @mywin = "Radiant Loss" %>
+    <%  puts "22222" %>
+    <% end %>
+    
+
+
+    <div class="ui red card fitted">
+
+      <div class="extra content">
+        <span class="right floated">
+          <%= @mywin %>
+          
+        </span>
+        <span>
+          Sep 19
+        </span>
+      </div>
+
+      <div class="image">
+          <% @hero = Champion.find(player['hero_id']) %>
+          <img data-lazy="<%=@hero['img_url']%>">
+      </div>
+
+      <div class="item_image">
+        <% begin %>
+        <% if player['item_0'] != 0 %>
+        <% item0 = Item.find(player['item_0']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item0['img_url'] %>" >
+        <% elsif player['item_0'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %> 
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+      
+        <% begin %>
+        <% if player['item_1'] != 0 %>
+        <% item1 = Item.find(player['item_1']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item1['img_url'] %>" >
+        <% elsif player['item_1'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+        
+        <% begin %>
+        <% if player['item_2'] != 0 %>
+        <% item2 = Item.find(player['item_2']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item2['img_url'] %>" >
+        <% elsif player['item_2'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+
+        <% begin %>
+        <% if player['item_3'] != 0 %>
+        <% item3 = Item.find(player['item_3']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item3['img_url'] %>" >
+        <% elsif player['item_3'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">  
+        <% end %>
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+
+        <% begin %>
+        <% if player['item_4'] != 0 %>
+        <% item4 = Item.find(player['item_4']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item4['img_url'] %>" >
+        <% elsif player['item_4'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+       
+        <% begin %>
+        <% if player['item_5'] != 0 %>
+        <% item5 = Item.find(player['item_5']) %>
+        <img style="display:inline-block" class="item_icon" data-lazy="<%= item5['img_url'] %>" >
+        <% elsif player['item_5'] == 0 %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+        <% rescue %>
+        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+
+      </div>
+      <div class="ui mini statistics">
+
+        <div class="green statistic">
+          <div class="value">
+            <%=player["kills"]%>
+          </div>
+          <div class="label">
+            Kills
+          </div>
+        </div>
+        <div class="red statistic">
+          <div class="value">
+            <%=player["deaths"]%>
+          </div>
+          <div class="label">
+            Deaths
+          </div>
+        </div>
+        <div class="yellow statistic">
+          <div class="value">
+            <%=player["assists"]%>
+          </div>
+          <div class="label">
+            Assits
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+
+    $('#card_view_container').slick({
+      lazyLoad: 'ondemand',
+      infinite: true,
+      slidesToShow: 7,
+      slidesToScroll: 3,
+
+  });
+
+  </script>

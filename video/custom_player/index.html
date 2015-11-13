@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script type="text/javascript">
+
+			var vid, play_btn, seekslider, curtimetext , durtimetext , mute_btn;
+
+
+			function intializePlayer(){
+				
+				//set object references
+				vid = document.getElementById("vid");
+				seekslider = document.getElementById("seekslider");
+				play_btn = document.getElementById("player_btn");
+				curtimetext = document.getElementById("curtimetext");
+				durtimetext = document.getElementById("durtimetext");
+				mute_btn = document.getElementById("mute_btn");
+
+				//add event listeners	
+				play_btn.addEventListener("click",pause,false);
+				seekslider.addEventListener("change",vidSeek,false);
+				vid.addEventListener("timeupdate",seekTimeUpdate,false);
+				mute_btn.addEventListener("click",vidMute,false);
+
+				//intial display
+
+				var durMins = Math.floor(vid.duration / 60);
+				var durSecs = Math.floor(vid.duration - durMins * 60);
+				if (durSecs < 10 ) { durSecs = "0"+durSecs;}
+				if (durMins < 10 ) { durMins = "0"+durMins;}
+
+				curtimetext.innerHTML = "00:00"
+				durtimetext.innerHTML = durMins+":"+durSecs;
+
+
+			}
+
+			window.onload = intializePlayer;
+
+			function pause(){
+
+				if (vid.paused ) {
+					// console.log("paused");
+					vid.play();
+					play_btn.innerHTML = 'Pause' ;
+				} else {
+					// console.log("playing");
+					vid.pause();
+					play_btn.innerHTML = 'Play' ;
+				}
+			}
+
+			function vidSeek (){
+
+				var seekto = vid.duration * (seekslider.value/100);
+				vid.currentTime = seekto;
+			}
+
+			function seekTimeUpdate (){
+				var nt = vid.currentTime * (100/vid.duration);
+				seekslider.value = nt;
+				var curMins = Math.floor(vid.currentTime / 60);
+				var curSecs = Math.floor(vid.currentTime - curMins * 60);
+				var durMins = Math.floor(vid.duration / 60);
+				var durSecs = Math.floor(vid.duration - durMins * 60);
+				if (curSecs < 10 ) { curSecs = "0"+curSecs;}
+				if (durSecs < 10 ) { durSecs = "0"+durSecs;}
+				if (curMins < 10 ) { curMins = "0"+curMins;}
+				if (durMins < 10 ) { durMins = "0"+durMins;}
+				curtimetext.innerHTML = curMins+":"+curSecs;
+				durtimetext.innerHTML = durMins+":"+durSecs;
+			}
+
+			function vidMute () {
+				if (vid.muted) {
+					// console.log("Muted");
+					vid.muted = false;
+					mute_btn.innerHTML = 'Mute' ;
+				} else {
+					// console.log("playing");
+					vid.muted = true;
+					mute_btn.innerHTML = 'Unmute' ;
+				}
+
+			}
+
+
+		</script>
+
+	</head>
+
+	<body>
+		
+		<div id="video_box">
+			<video id="vid" width="640" height="385"> 
+				<source src="vid.mp4"> 
+			</video>
+			<div id="control_bar">
+				<button id="player_btn"> Play</button>
+				<input id="seekslider" type="range" min="0" max="100" value="0" step="1">
+				<span id="curtimetext"></span> / <span id="durtimetext"></span>
+				<button id="mute_btn"> Mute </button>
+
+			</div>
+		</div>
+
+		<img id="reaction" src="test.gif">
+
+	</body>
+
+</html>

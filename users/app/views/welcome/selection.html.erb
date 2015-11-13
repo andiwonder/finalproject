@@ -1,0 +1,195 @@
+<% @agi = {} %>
+<% @agi_img = [] %>
+
+<% @agi_heros.each do |hero| %>
+<% @agi[hero['hero_name']] =  hero['img_url'] %>
+<% end %>
+
+<% Hash[@agi.sort_by{ |k, v| k }] %>
+
+<!-- 
+<% @agi.each do |k,v| %>
+<img class="hero_selection_potrait" src="<%= v %>">
+<% end %>
+ -->
+
+ <div class="matches_menu ui secondary  menu">
+  <a id="matches_submenu_1" class="active item">
+    Profile
+  </a>
+  <a id="matches_submenu_2" class="matches_submenu item" href="/chin">
+    Matches
+  </a>
+  <a id="matches_submenu_3" class="item">
+    Heros
+  </a>
+  <a id="matches_submenu_4" class="item">
+    Notes
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <a id="matches_submenu_5" class="ui item">
+      Logout
+    </a>
+  </div>
+</div>
+
+
+<video id="selection_background_movie" src="/assets/background.mov" autoplay loop></video>
+ <div id="selection_main_container">
+ 	
+	<div id="selection_sidebar">
+		
+
+	</div>
+
+	<div id="selection_indicator">
+	 	<div id="str_Line"> 
+	 		<p class="vertical_text"> Strength </p>
+	 		<hr class="vertical_line">
+	 	</div>
+		<div id="agi_Line"> 
+			<p class="vertical_text"> Agility </p>
+			<hr class="vertical_line">
+		</div>
+		<div id="int_Line"> 
+			<p class="vertical_text"> Intelligence </p> 
+		</div>
+	</div>
+
+ 	<div id="selection_mainbar">
+ 		
+		<div id="selection_str_heros">
+
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/abbadon.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/alch.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/axe.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/bb.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/bm.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/brew.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/cent.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/ck.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/cw.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/dk.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/doom.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/earth_shaker.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/earth_spirit.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/elder_titan.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/huskar.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/kunkka.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/legion.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/lifestealer.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/lycan.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/magnus.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/ns.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/omni.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/phoenix.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/pudge.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/sandking.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/sb.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/slardar.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/sven.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/tide.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/timber.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/tiny.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/treant.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/tusk.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/undying.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/wisp.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/str/wk.png">
+
+		</div>
+
+		<div id="selection_agi_heros">
+
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/am.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/bh.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/brood.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/bs.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/clinkz.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/drow.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/ember.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/faceless.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/gyro.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/jugg.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/lone_druid.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/luna.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/medusa.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/meepo.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/morph.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/naga.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/nyx.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/pa.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/pl.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/potm.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/razor.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/riki.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/sf.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/slark.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/sniper.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/spectre.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/ta.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/tb.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/troll.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/ursa.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/veno.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/viper.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/vs.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/agi/weaver.png">
+
+		</div>
+
+		<div id="selection_int_heros">
+
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/aa.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/bane.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/bat.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/chen.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/cm.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/ds.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/dazzle.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/dp.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/disruptor.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/enchant.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/enigma.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/invoker.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/jak.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/kotl.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/lesh.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/lich.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/lina.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/lion.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/np.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/necro.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/ogre.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/oracle.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/od.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/puck.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/pugna.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/qop.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/rubick.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/shadow_demon.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/shadow_shaman.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/silencer.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/skywrath.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/storm.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/techies.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/tinker.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/visage.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/warlock.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/windrunner.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/winter_wyvern.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/wd.png">
+		<img class="hero_selection_potrait" src="/assets/hero_selection/try2/zeus.png">
+
+
+	</div>
+			
+ 	</div>
+
+ </div>

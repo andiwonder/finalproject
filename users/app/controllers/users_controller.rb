@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+    def most_common_value(a)
+      a.group_by(&:itself).values.max_by(&:size).first(3)
+    end
+
+    def mode
+      sort_by {|i| grep(i).length }.last
+    end
+
     def initialize
       @offline = []
       @online = []
@@ -24,6 +32,8 @@ class UsersController < ApplicationController
       redirect_to "/sessions/new"
     end
 
+
+
     def show
      actual_user = User.find(session[:user_id])
      if logged_in? && check_current_user?
@@ -39,7 +49,7 @@ class UsersController < ApplicationController
       end
 
 
-      @myObj = {
+      @profile_info_display = {
         "avatar" => @player_summary['response']['players'][0]['avatarfull'],
         "name" => @player_summary['response']['players'][0]['personaname'],
         "state" => @player_summary['response']['players'][0]['personastate'],
@@ -90,6 +100,7 @@ class UsersController < ApplicationController
       @steam_32_id = @current_user.steam_id.to_i - 76561197960265728
       @games = @recent_matches['result']['matches']
       @mygames_list = []
+      @myheroes_list = []
 
 
       @games.each do |game|
@@ -112,16 +123,33 @@ class UsersController < ApplicationController
             end
         end
 
-
+      @myheroes_list.push(myObj['hero_id'])
       @mygames_list.push(myObj)
 
       end
-      
+
+      @top_3_list = []
+      @freq = @myheroes_list.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+      @swap = @myheroes_list.max_by { |v| @freq[v] }
+      @test = @freq.sort_by {|_key, value| value}
+      @my_fav_heroes = [@test[-1],@test[-2],@test[-3],@test[-4],@test[-5]]
+
+      @my_fav_heroes.each do |hero|
+        @temphero = Champion.find(hero[0])
+        @frequency = [hero[1]]
+        top_3_heroes = {
+        "hero_id" => hero[0],
+        "frequency" => @frequency,
+        "hero_pic" =>  @temphero['img_url'],    
+        "hero_name" => @temphero['hero_name']
+        }
+        @top_3_list.push(top_3_heroes)
+      end
 
 
       respond_to do |format|
         format.html
-        format.json {render json: @mygames_list}
+        format.json {render json: @profile_info_display}
       end
     else
       redirect_to user_path(actual_user)
@@ -136,18 +164,6 @@ class UsersController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

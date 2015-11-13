@@ -14,6 +14,13 @@
  *= require_self
  */
 
+ 
+
+.item_icon{
+    width: 40px;
+    height: auto;
+    display: inline-block;
+}
 
 
 ul {
@@ -74,6 +81,7 @@ nav{
 	width: 70%;
 	margin: 0 auto;
 }
+
 
 
 

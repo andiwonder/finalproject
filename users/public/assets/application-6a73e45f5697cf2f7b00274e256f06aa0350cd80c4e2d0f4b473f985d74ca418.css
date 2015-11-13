@@ -1,0 +1,407 @@
+
+
+ul {
+  width: 100%;
+}
+
+li {
+  display: inline-block;
+  margin-right: -4px;
+  width: 130px;
+}
+li a {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1em;
+  display: block;
+  -moz-transform: skewX(-19deg);
+  -ms-transform: skewX(-19deg);
+  -webkit-transform: skewX(-19deg);
+  transform: skewX(-19deg);
+  width: 100%;
+  min-height: 3em;
+  text-align: center;
+  
+}
+li a span {
+  color: white;
+  position: absolute;
+  box-sizing: border-box;
+  -moz-transform: skewX(19deg);
+  -ms-transform: skewX(19deg);
+  -webkit-transform: skewX(19deg);
+  transform: skewX(19deg);
+  left: 0;
+  width: 100%;
+}
+
+nav{
+  margin-left: 220px;
+  position: relative;
+  bottom: 14px;
+  right: 10px;
+
+}
+.nav_bg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#header{
+  width: 100%;
+}
+
+
+#login_container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+#background-wrapper{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+2,828c95+41,3f4b60+94;dota */
+background: radial-gradient(ellipse at center,  rgba(181,189,200,1) 2%,rgba(130,140,149,1) 41%,rgba(63,75,96,1) 94%); /* W3C */
+height: 720px;
+width: 1400px;
+margin: 0;
+padding: 0;
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1;
+}
+
+
+#main_display{
+  width: 75%;
+  height: 80%;
+  /*border: 2px solid blue;*/
+  margin-top: 3%;
+  margin-left: 12%;
+}
+
+#sub_links{
+  position: relative;
+  z-index: 2;
+  top: 15px;
+  width: 100%;
+  height: 8%;
+  /*border: 1px solid red;*/
+}
+
+#sub_links a{
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  font-family: 'Raleway';
+}
+
+#profile_display{
+  width: 100%;
+  height: 15%;
+  background-color: black;
+  opacity: .8;
+  color: white;
+  /*border: 1px solid yellow;*/
+}
+
+#profile_display h3{
+  display: inline-block;
+  position: relative;
+  bottom: 65px;
+
+}
+
+#profile_stats{
+  width: 100%;
+  height: 75%;
+  /*border: 1px solid purple;*/
+}
+
+#left_side{
+  
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  height: 100%;
+  /*border: 1px solid violet;*/
+  display: inline-block;
+}
+
+#right_side{
+  margin-left: 5px;
+  vertical-align: top;
+  
+  padding: 0;
+  width: 49%;
+  height: 100%;
+  /*border: 1px solid orange;*/
+  display: inline-block;
+}
+#chart {
+  height: 100%;
+  width: 60%;
+  /*border: 2px solid red;*/
+  vertical-align: top;
+  display: inline-block;
+} 
+#user_stats{
+  font-family: 'Raleway';
+  color: white;
+  line-height: 200%;
+
+  font-size: 12px;
+  height: 100%;
+  width: 37%;
+  /*border: 2px solid red;*/
+  display: inline-block;
+}
+#user_stats ul li{
+  display: inline-block;
+}
+#sub_sub_links{
+  background-color: rgba(18,41,66,0);
+  width: 100%;
+  height: 10%;
+  /*border: 2px solid green;*/
+}
+#sub_sub_links_display{
+  text-align: justify;
+  background-color: rgba(18,41,66,0.6);
+  color: white;
+  font-family: 'Raleway';
+  width: 100%;
+  height: 85%;
+  /*border: 2px solid red;*/
+}
+#sub_sub_links a{
+  position: relative;
+  left: 10px;
+  top: 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  font-family: 'Raleway';
+}
+#right_side img{
+
+  width: 38px;
+  height: 24px;
+}
+#fav_hero_display {
+  margin-top: 3%;
+  width: 100%;
+  height: 20%;
+  
+}
+#top_hero_bg{
+  width: 100%;
+  height: 100%;
+}
+#user_info{
+  margin-top: 4%;
+  background-color: rgba(18,41,66,0.6);
+  width: 100%;
+  height: 66%;
+  
+}
+#table-wrapper {
+  position:relative;
+  font-size: 12px;
+}
+#table-scroll {
+  height:375px;
+  overflow:scroll;  
+}
+#table-wrapper table {
+  width:100%;
+}
+::-webkit-scrollbar {
+      width: 5px;
+} /* this targets the default scrollbar (compulsory) */
+
+#friends_list{
+  margin-right: 0;
+}
+#online{
+  display: none;
+  width: 350px;
+  max-height: 400px;
+  
+  overflow: scroll;
+}
+#offline{
+  display: none;
+  width: 350px;
+  max-height: 400px;
+  
+  overflow: scroll;
+}
+#away{
+  display: none;
+  width: 350px;
+  max-height: 400px;
+  
+  overflow: scroll;
+}
+
+#online li, #offline li, #away li{
+  margin: 0;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+}
+#list button{
+  width: 100%;
+  float: right;
+}
+
+#list{
+  position: relative;
+  bottom: 500px;
+  display: none;
+  width: 300px;
+  max-height: 500px;
+  overflow: scroll;
+  border: 5px solid red;
+}
+#list img{
+  width: 48px;
+  height: 48px;
+}
+
+.top_hero{
+  width: 70px;
+  height: 65px;
+  position: absolute;
+
+}
+
+.top_hero:nth-child(1){
+  left: 180px;
+  top: 202px;
+}
+.top_hero:nth-child(2){
+  left: 260px;
+  top: 202px;
+}
+.top_hero:nth-child(3){
+  left: 340px;
+  top: 202px;
+}
+.top_hero:nth-child(4){
+  left: 420px;
+  top: 202px;
+}
+.top_hero:nth-child(5){
+  left: 500px;
+  top: 202px;
+}
+
+
+
+
+match-list.css
+#header{
+	width: 100%;
+}
+
+
+
+#login_container{
+	width: 70%;
+	margin: 0 auto;
+}
+body {
+	background-image: url('/assets/background/bs_bg.jpg');
+}
+
+#card_view_container {
+	width: 70%;
+	margin-left: 15%;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+
+
+ul {
+  width: 100%;
+}
+
+li {
+  display: inline-block;
+  margin-right: -4px;
+  width: 130px;
+}
+li a {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1em;
+  display: block;
+  -moz-transform: skewX(-19deg);
+  -ms-transform: skewX(-19deg);
+  -webkit-transform: skewX(-19deg);
+  transform: skewX(-19deg);
+  width: 100%;
+  min-height: 3em;
+  text-align: center;
+  
+}
+li a span {
+  color: white;
+  position: absolute;
+  box-sizing: border-box;
+  -moz-transform: skewX(19deg);
+  -ms-transform: skewX(19deg);
+  -webkit-transform: skewX(19deg);
+  transform: skewX(19deg);
+  left: 0;
+  width: 100%;
+}
+
+nav{
+  margin-left: 220px;
+  position: relative;
+  bottom: 14px;
+  right: 10px;
+
+}
+.nav_bg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#header{
+	width: 100%;
+}
+
+
+#login_container{
+	width: 70%;
+	margin: 0 auto;
+}
+
+
+
+

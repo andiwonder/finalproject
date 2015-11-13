@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'users#show'
   get '/' => 'users#show'
   get '/welcome' => 'welcome#show'
+  get '/index' => 'welcome#index'
+  get '/selection' => 'welcome#selection'
 
   resources :users
 
@@ -10,7 +12,13 @@ Rails.application.routes.draw do
 
   get'/users/:id/test' => 'users#test'
 
+  get '/test' => 'test#test'
+  get '/chin' => 'test#chin'
+  get '/cannon' => 'test#cannon'
+  get '/carousel' => 'test#carousel'
+  get '/background' => 'test#background'
 
+  get '/twitch' => 'test#twitch'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

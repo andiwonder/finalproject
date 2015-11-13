@@ -12,20 +12,26 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 
 //= require ./libraries/underscore
 //= require ./libraries/backbone
 
 //= require ./d3.v3.min.js
+//= require ./parallax/main_parallax.js
+
 //= require ./profile/RadarChart.js
+//= require ./profile/hero_selection.js
 //= require ./profile/script.js
+//= require ./profile/slick.js
 
 //= require ./backbone/models/model.js
 //= require ./backbone/views/view.js
 //= require ./backbone/collections/collection.js
 //= require ./backbone/views/collectionview.js
 //= require ./backbone/routers/router.js
+
+//= require_self
+//= require ./profile/match_card_slick.js
 
 $(document).ready(function(){
 	console.log("swap");
@@ -34,5 +40,7 @@ $(document).ready(function(){
 	swapview = new UserView({model:swap});
 
 })
+
+
 
 

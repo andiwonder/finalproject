@@ -1,0 +1,34 @@
+#vid {
+	-webkit-box-shadow: 0 7px 4px #777;
+	-moz-box-shadow: 0 7px 4px #777;
+	box-shadow: 0 7px 4px #777;
+}
+
+/*#vid {
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}*/
+
+#control_bar{
+	background-color: #333;
+	padding: 10px;
+}
+
+#video_box{
+	width: 640px;
+	background: #000;
+	margin-left: 60px;
+	margin-top: 60px;
+	
+}
+#reaction{
+	max-width: 200px;
+	height: auto;
+	position: relative;
+	top: -173px;
+}
+
+input#seekslider {
+	width: 300px;
+}
