@@ -1,8 +1,5 @@
-<!-- <video id="selection_background_movie" src="/assets/background.mov" autoplay loop></video> -->
-<img id="selection_background_gif" loop="infinite" src="/assets/background.gif">
-
  <div class="matches_menu ui secondary  menu">
-  <a id="matches_submenu_1" class="active item" href="/users">
+  <a id="matches_submenu_1" class="active item">
     Profile
   </a>
   <a id="matches_submenu_2" class="matches_submenu item" href="/chin">
@@ -29,8 +26,8 @@
 
 <div id="main_container">
 
-  
-  
+
+
   <div id="card_view_container">
 
   <% @players.each do |player| %>
@@ -49,7 +46,7 @@
     
 
 
-    <div class="ui red card fitted">
+    <div class="ui red card">
 
       <div class="extra content">
         <span class="right floated">
@@ -61,79 +58,85 @@
         </span>
       </div>
 
-      <div class="image">
+      <a class="image hero_potrait" href="#">
           <% @hero = Champion.find(player['hero_id']) %>
           <img data-lazy="<%=@hero['img_url']%>">
-      </div>
+      </a>
 
-      <div class="item_image">
-        <% begin %>
-        <% if player['item_0'] != 0 %>
-        <% item0 = Item.find(player['item_0']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item0['img_url'] %>" >
-        <% elsif player['item_0'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %> 
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
-      
-        <% begin %>
-        <% if player['item_1'] != 0 %>
-        <% item1 = Item.find(player['item_1']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item1['img_url'] %>" >
-        <% elsif player['item_1'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
+
+      <div id="items_container">
         
-        <% begin %>
+
+        <% if player['item_0'] != 0 %>
+          <% begin %>
+          <% item0 = Item.find(player['item_0']) %>
+          <img class="item_icon" data-lazy=" <%= item0['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+    
+        <% if player['item_1'] != 0 %>
+          <% begin %>
+          <% item1 = Item.find(player['item_1']) %>
+          <img class="item_icon" data-lazy=" <%= item1['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+        <% end %>
+
         <% if player['item_2'] != 0 %>
-        <% item2 = Item.find(player['item_2']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item2['img_url'] %>" >
-        <% elsif player['item_2'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% begin %>
+          <% item2 = Item.find(player['item_2']) %>
+          <img class="item_icon" data-lazy=" <%= item2['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
         <% end %>
 
-        <% begin %>
         <% if player['item_3'] != 0 %>
-        <% item3 = Item.find(player['item_3']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item3['img_url'] %>" >
-        <% elsif player['item_3'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">  
-        <% end %>
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% begin %>
+          <% item3 = Item.find(player['item_3']) %>
+          <img class="item_icon" data-lazy=" <%= item3['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
         <% end %>
 
-        <% begin %>
+
         <% if player['item_4'] != 0 %>
-        <% item4 = Item.find(player['item_4']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item4['img_url'] %>" >
-        <% elsif player['item_4'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% begin %>
+          <% item4 = Item.find(player['item_4']) %>
+          <img class="item_icon" data-lazy=" <%= item4['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
         <% end %>
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
-       
-        <% begin %>
+
         <% if player['item_5'] != 0 %>
-        <% item5 = Item.find(player['item_5']) %>
-        <img style="display:inline-block" class="item_icon" data-lazy="<%= item5['img_url'] %>" >
-        <% elsif player['item_5'] == 0 %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% begin %>
+          <% item5 = Item.find(player['item_5']) %>
+          <img class="item_icon" data-lazy=" <%= item5['img_url'] %> ">
+          <% rescue %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
+          <% end %>
+        <% elsif %>
+          <img class="item_icon" data-lazy="/assets/items_bg2.png">
         <% end %>
-        <% rescue %>
-        <img style="display:inline-block" class="item_icon" data-lazy="/assets/items_bg2.png">
-        <% end %>
+
 
       </div>
+
       <div class="ui mini statistics">
 
         <div class="green statistic">
