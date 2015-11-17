@@ -15,8 +15,12 @@ div.extra.content{
 
 div.ui.mini.statistics{
     background: (255,255,255,0.2);
-    line-height: 1.5em;
-    height: 35px;
+    line-height: 1em;
+    height: 29px;
+}
+
+div.green.statistic{
+    margin-left: 17px;
 }
 
 #matches_submenu_1, #matches_submenu_2, #matches_submenu_3, #matches_submenu_4, #matches_submenu_5{
@@ -57,7 +61,7 @@ div.ui.mini.statistics{
 }
 
 #card_view_container {
-	width: 85%;
+	width: 83.5%;
 	margin-left: 5%;
 
 	opacity: 1;
@@ -198,8 +202,8 @@ div.ui.mini.statistics{
 
 #selection_main_container{
     margin-top: -30px;
-    height: 610px;
-    background-image: url('/assets/random12_bg.png');
+    height: 720px;
+    background-image: url('/assets/random4.png');
     background-size: cover;
     
 }
@@ -216,7 +220,7 @@ div.ui.mini.statistics{
 #selection_mainbar{
     display: inline-block;
     vertical-align: top;
-    margin-top: 50px;
+    margin-top: 80px;
     
  
 }
@@ -310,8 +314,8 @@ div.ui.mini.statistics{
     width: 97%;
     position: absolute;
     left: 30px;
-    top: 35px;
-    z-index: 2;
+    top: 40px;
+    z-index: 4;
 }
 
 #selection_background_gif{ 
@@ -326,14 +330,14 @@ div.ui.mini.statistics{
 
 .slick-slide .item_icon{
     display: inline-block;
-    width: 41px;
+    width: 40px;
     height: auto;
     margin: 0;
     padding: 0;
 }
 
 div.ui.red.card.slick-slide{
-    width: 126px;
+    width: 126px !important;
 }
 
 .hero_selection_potrait:hover {
@@ -347,7 +351,77 @@ div.ui.red.card.slick-slide{
     width: 99%;
 }
 
+#stats_page{
+    width: 100vw;
+    height: 100vh;
+    border: 10px solid red;
+    background-image: url('/assets/necro_bg.png');
+    background-size: cover;
+}
 
 
+
+/*==========================matches view =========================*/
+
+#match_main_container{
+    width: 100vw;
+    height: 100vh;
+}
+
+#match_details_sidebar {
+    display: inline-block;
+    height: 100%;
+    width: 20%;
+    border: 10px solid red;
+    vertical-align: top;
+}
+
+#match_details_main {
+    display: inline-block;
+    height: 100%;
+    width: 75%;
+    border: 10px solid yellow;
+}
+#match_overview{
+    width: 85%;
+    height: 15%;
+    border: 2px solid blue;
+
+}
+#radiant_side{
+    margin-top: 30px;
+    width: 85%;
+    height: 30%;
+    border: 2px solid green;
+
+}
+#dire_side{
+    margin-top: 30px;
+    width: 85%;
+    height: 30%;
+    border: 2px solid red;
+
+}
+.match_details.ui.vertical.text.menu{
+    margin-top: 15% !important;
+}
+table{
+    font-size: 10px;
+}
+
+td{
+    width: 23px;
+
+}
+
+.match_list_items{
+    width: 26px;
+    height: 26px;
+}
+
+.match_list_heros{
+    width: 35px;
+    height: 30px;
+}
 
 

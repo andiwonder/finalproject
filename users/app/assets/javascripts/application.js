@@ -19,6 +19,9 @@
 //= require ./d3.v3.min.js
 //= require ./parallax/main_parallax.js
 
+//= require ./semantic/semantic.min.js
+
+
 //= require ./profile/RadarChart.js
 //= require ./profile/hero_selection.js
 //= require ./profile/script.js
@@ -33,13 +36,16 @@
 //= require_self
 //= require ./profile/match_card_slick.js
 
+console.log("application.js here");
+
 $(document).ready(function(){
 	console.log("swap");
 	swap = new User({id:2});
 	swap.fetch();
 	swapview = new UserView({model:swap});
 
-})
+});
+
 
 
 
