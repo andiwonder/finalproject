@@ -10,15 +10,24 @@ Rails.application.routes.draw do
 
   get '/users/:id/matches' => 'matchs#index'
 
-  get'/users/:id/test' => 'users#test'
+  get '/users/:id/test' => 'users#test'
+  get '/users/:id/graphs' => 'users#graphs'
 
   get '/test' => 'test#test'
-  get '/chin' => 'test#chin'
+
+  get '/twitch' => 'twitch#index'
+  get '/twitch/logged' => 'twitch#logged'
+  get '/twitch/edit' => 'twitch#editor'
+
+  get '/chin/:swap' => 'test#chin'
+  get '/chin2' => 'test#chin2'
+
   get '/cannon' => 'test#cannon'
   get '/carousel' => 'test#carousel'
   get '/background' => 'test#background'
 
-  get '/twitch' => 'test#twitch'
+  get '/twitch_test' => 'test#flash'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

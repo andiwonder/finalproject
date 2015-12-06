@@ -1,5 +1,24 @@
 class UsersController < ApplicationController
 
+    
+    def graphs
+
+      @players = Player.where(user_id: 1)
+      @last_match = Match.find(1)
+
+
+
+
+
+
+      respond_to do |format|
+        format.html
+        format.json {render json: @last_match}
+      end
+
+    end
+
+
     def most_common_value(a)
       a.group_by(&:itself).values.max_by(&:size).first(3)
     end
@@ -39,6 +58,7 @@ class UsersController < ApplicationController
      if logged_in? && check_current_user?
       puts "yoooo"
       @current_user = User.find(session[:user_id])
+      @last_game = @current_user.matches.order('id desc').first
       @player_summary = HTTParty.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamids=' + @current_user.steam_id )
       @recent_game = HTTParty.get("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=" + @current_user.steam_id + "&format=json")
       dota = []
@@ -149,7 +169,7 @@ class UsersController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.json {render json: @profile_info_display}
+        format.json {render json: @last_game}
       end
     else
       redirect_to user_path(actual_user)

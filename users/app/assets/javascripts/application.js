@@ -13,38 +13,30 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require ./libraries/underscore
-//= require ./libraries/backbone
-
-//= require ./d3.v3.min.js
-//= require ./parallax/main_parallax.js
-
-//= require ./semantic/semantic.min.js
-
-
 //= require ./profile/RadarChart.js
 //= require ./profile/hero_selection.js
 //= require ./profile/script.js
 //= require ./profile/slick.js
+//= require ./d3.v3.min.js
+//= require ./parallax/main_parallax.js
+//= require ./semantic/semantic.min.js
+//= require bootstrap-slider.js
 
-//= require ./backbone/models/model.js
-//= require ./backbone/views/view.js
-//= require ./backbone/collections/collection.js
-//= require ./backbone/views/collectionview.js
-//= require ./backbone/routers/router.js
+//= require ./libraries/underscore
+//= require ./libraries/backbone
 
-//= require_self
+//= require_tree ./backbone/models
+//= require_tree ./backbone/collections
+//= require_tree ./backbone/views
+//= require_tree ./backbone/routers
+
+//= require ./app.js
+//= require_tree .
+
 //= require ./profile/match_card_slick.js
 
-console.log("application.js here");
 
-$(document).ready(function(){
-	console.log("swap");
-	swap = new User({id:2});
-	swap.fetch();
-	swapview = new UserView({model:swap});
 
-});
 
 
 

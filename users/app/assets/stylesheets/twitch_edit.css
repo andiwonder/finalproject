@@ -1,0 +1,145 @@
+#notes_main_container{
+	display: inline-block;
+
+}
+
+#notes_create_sidebar{
+	margin-left: 10px;
+	display: inline-block;
+	width: 350px;
+	height: 570px;
+	border: 2px solid red;
+	background-color: #F8F8F8;
+}
+
+#notes_create_main{
+	width: 905px;
+	height: 600px;
+	border: 2px solid blue;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#notes_main_sublinks, #notes_main_title{
+	width: 100%;
+	height: 50px;
+	border: 2px solid black;
+
+}
+
+#notes_main_sublinks_items{
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+#notes_main_editor{
+	width: 100%;
+	height: 510px;
+	border: 2px solid green;
+}
+
+#notes_editor_video{
+	width: 900px;
+	height: 506px;
+	border: 2px solid yellow;
+}
+
+#notes_editor_creator{
+
+}
+#notes_sidebar_changes{
+	height: 42px;
+}
+
+#notes_sidebar_notes_list{
+	margin-top: 15px;
+	height: 80px;
+	border-bottom: 1px solid #e2e2e2;
+}
+#notes_sidebar_notes_list span{
+	margin-top: 15px;
+	margin-left: 40px;
+}
+#notes_sidebar_category{
+	margin-top: 10px;
+	height: 60px;
+	border-bottom: 1px solid #e2e2e2;
+}
+#notes_sidebar_category span{
+	margin-left: 40px;
+}
+
+#notes_sidebar_add{
+	margin-top: 6px;
+	margin-left: 40px;
+	width: 120px;
+}
+#notes_sidebar_save{
+	margin-left: 30px;
+	width: 80px;
+}
+#notes_sidebar_list_dropdown{
+	margin-top: 5px;
+	margin-left: 40px;
+	width: 240px;
+}
+#notes_sidebar_category_boxes{
+	margin-top: 15px;
+	margin-left: 10px;
+}
+#notes_sidebar_time_label{
+	margin-top: 10px;
+}
+#notes_sidebar_time_label span{
+	margin-left: 40px;
+}
+#notes_sidebar_time{
+	margin-top: 5px;
+	border-bottom: 1px solid #e2e2e2;
+	height: 65px;
+}
+#notes_sidebar_time .ui.input{
+	width: 100px;
+}
+#notes_start_label{
+	margin-left: 41px;
+}
+#notes_end_label{
+	margin-left: 110px;
+	height: 10px;
+}
+
+#notes_start_input{
+	margin-left: 40px;
+}
+#notes_end_input{
+	margin-left: 40px;
+}
+#notes_sidebar_text_label{
+	margin-left: 40px;
+	margin-top: 40px;
+}
+#notes_sidebar_text .ui.input{
+	margin-left: 40px;
+	margin-top: 20px;
+	width: 80%;
+	height: 150px;
+}
+.twitch_vid_list_thumb{
+	width: 140px;
+	height: 105px;
+}
+#notes_main_twitch_vid_list_container{
+	display: none;
+	width: 905px;
+	height: 510px;
+	padding-left: 40px;
+	border: 2px solid violet;
+	overflow: scroll;
+}
+.twitch_vid_list_container{
+	width: 200px;
+	height: 160px;
+	display: inline-block;
+	margin-bottom: 40px;
+}

@@ -31,15 +31,21 @@
   <% @players.each do |player| %>
     <% @match = Match.find(player['match_id']) %>
     <% @slot = player['player_slot'] %>
+    <% @time = Time.at(@match['start_time'].to_i).strftime("%m/%d %I:%M %p") %>
     <% rad_win = @match['radiant_win'] %>
     <% puts rad_win %>
-
-    <% if rad_win == true %>
-    <%  @mywin = "Radiant Win" %>
+    
+    <% if rad_win == true && (@slot == 132 or @slot == 131 or @slot == 130 or @slot == 129 or @slot == 128)  %>
+    <%  @mywin = "Win" %>
     <%  puts "1111111" %>
-    <% elsif rad_win == false %>
-    <%  @mywin = "Radiant Loss" %>
+    
+    <% elsif rad_win == false && (@slot == 4 or @slot == 3 or @slot == 2 or @slot == 1 or @slot == 0) %>
+    <%  @mywin = "Win" %>
     <%  puts "22222" %>
+
+    <% elsif %>
+    <%  @mywin = "Loss" %>
+    <%  puts "33333" %>
     <% end %>
     
 
@@ -52,14 +58,21 @@
           
         </span>
         <span>
-          Sep 19
+          <%= @time %>
         </span>
       </div>
 
-      <a class="image hero_potrait" href="#">
-          <% @hero = Champion.find(player['hero_id']) %>
-          <img data-lazy="<%=@hero['img_url']%>">
+
+      
+
+      
+
+      <% @hero = Champion.find(player['hero_id']) %>
+      <a href="#match_overview">
+      <img class="image hero_potrait" value="match_<%= player['match_id'] %>"  data-lazy="<%=@hero['img_url']%>">
       </a>
+
+
 
 
       <div id="items_container">
@@ -191,7 +204,7 @@
 
   <div id="match_details_main">
     <div id="match_overview"></div>
-    <div id="radiant_side">
+    <div name="section_top" id="radiant_side">
       
         <table cellspacing="10" style="width:100%">
           <tr>
@@ -216,10 +229,40 @@
             <th></th>
             <th></th>
           </tr>
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
           <% @testplayers.each do |player| %>
             <% if player['player_slot'] == 132 or player['player_slot'] == 131 or player['player_slot'] == 130 or player['player_slot'] == 129 or player['player_slot'] == 128 %>
             <tr>
-              <td> <%= player['account_id'] %> </td>
+
+              <% begin %>
+              
+              <% @tempid = player['account_id'] + 76561197960265728 %>
+              <% @currplayer = @testplayers_summaries['response']['players'].select {|player| player['steamid'] == @tempid.to_s } %>
+
+              <% unless @currplayer.nil? %>
+              <td> <img class="match_view_player_avatar" src=" <%= @currplayer[0]['avatarmedium'] %> " alt="/assets/anon.jpeg"> </td>
+              <td class="player_personaname"> <%= @currplayer[0]['personaname'] %> </td>
+              <% end %>
+  
+              <% rescue %>
+
+              <td> <img class="match_view_player_avatar" src="/assets/anon.jpeg"> </td>
+              <td class="player_personaname"> <span>Anonymous</span></td>
+              
+              <% end %>
+            
+
               <% hero = Champion.find(player['hero_id']) %>
               <td> <img class="match_list_heros" src=" <%= hero['img_url'] %>"> </td>
               <td> </td>
@@ -286,7 +329,7 @@
               <td> <img class="match_list_items" src ="/assets/items_bg2.png"> </td>
               <% elsif %>
               <% begin %>
-              <% item1= Item.find(player['item_0']) %>
+              <% item1= Item.find(player['item_4']) %>
               <td> <img class="match_list_items" src=" <%= item1['img_url'] %> "> </td>
               <% rescue %>
               <td> <img class="match_list_items" src="/assets/items_bg2.png"> </td>
@@ -306,7 +349,7 @@
 
             </tr>
           <% end %>
-        <% end %>
+        <% end %> -->
         </table>  
 
 
@@ -335,11 +378,29 @@
             <th></th>
             <th></th>
             <th></th>
-          </tr>
+          </tr><!-- 
           <% @testplayers.each do |player| %>
             <% if player['player_slot'] == 4 or player['player_slot'] == 3 or player['player_slot'] == 2 or player['player_slot'] == 1 or player['player_slot'] == 0 %>
             <tr>
-              <td> <%= player['account_id'] %> </td>
+
+              <% begin %>
+              <% @tempid2 = player['account_id'] + 76561197960265728 %>
+              <% @currplayer2 = @testplayers_summaries['response']['players'].select {|player| player['steamid'] == @tempid2.to_s } %>
+
+              <% unless @currplayer2.nil? %>
+                <td> <img class="match_view_player_avatar" src=" <%= @currplayer2[0]['avatarmedium'] %> " alt="/assets/anon.jpeg"> </td>
+              <td class="player_personaname"> <%= @currplayer2[0]['personaname'] %> </td>
+              <% end %>
+
+
+              <% rescue %>
+              
+              <td><img src="/assets/anon.jpeg"> </td>
+              <td class="player_personaname"> <span>Anonymous</span></td>
+              <% end %>
+            
+
+              
               <% hero = Champion.find(player['hero_id']) %>
               <td> <img class="match_list_heros" src=" <%= hero['img_url'] %>"> </td>
               <td></td>
@@ -406,7 +467,7 @@
               <td> <img class="match_list_items" src ="/assets/items_bg2.png"> </td>
               <% elsif %>
               <% begin %>
-              <% item1= Item.find(player['item_0']) %>
+              <% item1= Item.find(player['item_4']) %>
               <td> <img class="match_list_items" src=" <%= item1['img_url'] %> "> </td>
               <% rescue %>
               <td> <img class="match_list_items" src="/assets/items_bg2.png"> </td>
@@ -426,7 +487,7 @@
 
             </tr>
           <% end %>
-        <% end %>
+        <% end %> -->
         </table>  
     </div>
   </div>

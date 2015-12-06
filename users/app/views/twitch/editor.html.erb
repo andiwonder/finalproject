@@ -1,0 +1,175 @@
+<div id="notes_main_container">
+	
+	<div id="notes_create_main">
+		
+		<div id="notes_main_sublinks">
+				
+			<div id="notes_main_sublinks_items" class="ui text menu">
+
+				<a id="notes_steam_icon" class="item">
+				    <i class="steam square icon"></i>
+				    Match
+				</a>
+				<a id="notes_twitch_icon" class="item">
+				    <i class="twitch icon"></i>
+				    Past Broadcasts
+				</a>
+				<a id="notes_notes_icon" class="item">
+					<i class="book icon"></i>
+				    Notes
+				</a>
+			</div>
+		</div>
+
+		<div id="notes_main_twitch_vid_list_container">
+			<% @twitch_vid_list['videos'].each do |vid| %>
+				<div class="twitch_vid_list_container">
+					<span>Title: 1977169965</span>
+					<input class="twitch_vid_id" type="hidden" name="vid_id" value="<%= vid['_id'] %>">
+					<img class="twitch_vid_list_thumb" src="<%= vid['preview'] %>"><br>
+					Duration: <%= Time.at(vid['length']).utc.strftime("%H:%M:%S") %><br>
+					Created: <%= time_ago_in_words(vid['recorded_at']) + " ago" %><br>
+					Delete: <%= distance_of_time_in_words(vid['delete_at'], Time.now) + " until deletion" %><br>
+				</div>
+			<% end %>
+		</div>
+
+		<div id="notes_main_editor">
+			
+			<div id="notes_editor_video">
+				 <iframe src="http://player.twitch.tv/?video=v28072675&autoplay=false" 
+				 frameborder="0" 
+				 scrolling="no" 
+				 height="506" 
+				 width="900" 
+				 autoplay="false"></iframe>
+			</div>
+			<div id="notes_editor_creator"></div>
+
+		</div>
+
+	</div>
+	
+	<div id="notes_create_sidebar">
+
+		<div id="notes_sidebar_changes">
+			<button id="notes_sidebar_add" class="ui primary button">
+			  Add Note
+			</button>		
+			<button id="notes_sidebar_save" class="ui button">
+			  Save
+			</button>
+		</div>
+		
+
+		<div id="notes_sidebar_notes_list">
+		<span> List of Notes </span>
+			<div id="notes_sidebar_list_dropdown" class="ui selection dropdown">
+			  <input type="hidden" name="notes">
+			  <i class="dropdown icon"></i>
+			  <div class="default text">Notes</div>
+			  <div class="menu">
+			    <div class="item" data-value="1">Male</div>
+			    <div class="item" data-value="0">Female</div>
+			  </div>
+			</div>
+		</div>
+		
+
+		<div id="notes_sidebar_category">
+		<span> Type of Error </span>			
+		  <div class="ui form">
+			  <div id="notes_sidebar_category_boxes" class="inline fields">
+			    <div class="field">
+			      <div class="ui radio checkbox">
+			        <input type="radio" name="frequency">
+			        <label>Mechanical</label>
+			      </div>
+			    </div>
+			    <div class="field">
+			      <div class="ui radio checkbox">
+			        <input type="radio" name="frequency">
+			        <label>Game sense</label>
+			      </div>
+			    </div>
+			    <div class="field">
+			      <div class="ui radio checkbox">
+			        <input type="radio" name="frequency">
+			        <label>Personality</label>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		</div>
+		
+
+		<div id="notes_sidebar_time_label">
+			<span>Time</span>
+		</div>
+
+		<div id="notes_sidebar_time">
+			<span id="notes_start_label">Start</span>      
+			<span id="notes_end_label">End</span>
+		<div id="notes_start_input" class="ui input">
+		  <input type="text" placeholder="Start...">
+		</div>
+		
+		<div id="notes_end_input" class="ui input">
+		  <input type="text" placeholder="End...">
+		</div>
+		</div>
+
+		<div id="notes_sidebar_text">
+		<span id="notes_sidebar_text_label">Enter Note</span>
+			<div class="ui input">
+			  <textarea rows="5" cols="40"></textarea>
+			</div>
+		</div>
+
+
+	</div>
+
+
+</div>
+
+
+
+<!-- 
+Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> <b>€ 1000</b>
+<%= video_tag "chin1.mp4", :size => "640x360", :controls => true %>
+ -->
+
+
+
+<script type="text/javascript">
+
+	function toggleAutoComplete(){
+		console.log("the festival")
+		$("#ex2").slider({
+			tooltip: 'always'
+		});	
+		var slider = new Slider('#ex2', {});
+
+		$('#notes_twitch_icon').click(function(){
+			console.log("clicked");
+			$('#notes_main_editor').hide();
+			$('#notes_main_twitch_vid_list_container').show();
+		});
+
+		$('#notes_notes_icon').click(function(){
+			console.log("clicked");
+			$('#notes_main_twitch_vid_list_container').hide();
+			$('#notes_main_editor').show();
+		});
+
+		$(".twitch_vid_list_container").click(function(){ 
+			debugger
+			console.log(this); 
+		});
+	 }
+
+ 	$(document).ready(function(){ toggleAutoComplete() });
+ 	document.addEventListener('page:load', function(){ toggleAutoComplete() });
+	
+</script>

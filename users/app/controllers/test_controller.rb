@@ -1,9 +1,13 @@
 class TestController < ApplicationController
 
+	def flash
+	end
+
 	def background
 	end
 
-	
+	def chin2
+	end
 
 	def chin
 		myheroes= []
@@ -18,11 +22,21 @@ class TestController < ApplicationController
 		@freq = myheroes.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
       	@test = @freq.sort_by {|_key, value| value}
       	@my_fav_heroes = [@test[-1],@test[-2],@test[-3],@test[-4],@test[-5]]
+      	@shmee = params[:swap]
 
-      	@testmatch = Match.find(1)
+      	
+      	@testmatch = Match.find(params[:swap])
 		@testplayers = @testmatch.players
-
+		@arr = [] 
+        @testplayers.each do |player|
+        	@tempvar =  player['account_id'].to_i + 76561197960265728
+        	@arr.push(@tempvar.to_s) 
+        end 
+        @arr2 = @arr.join(",").to_s
+        @testplayers_summaries = HTTParty.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamids=" + @arr2 )
+       
       	@items = Item.all 
+      	@heros = Champion.all
 
       respond_to do |format|
         format.html
@@ -38,6 +52,45 @@ class TestController < ApplicationController
     end
 
     def twitch
+
+ #    	def logged
+
+	# 	@farm = (params[:code])
+
+	# 	@first_vid = "http://www.twitch.tv/lqt1/v/27732847"
+	# 	@second_vid = "http://www.twitch.tv/lqt1/v/27727234"
+	# 	@third_vid = "http://www.twitch.tv/lqt1/v/27717222"
+
+		
+	# 	@url = @first_vid.split("/")[-1]
+
+	# 	@twitchoauth = HTTParty.post("https://api.twitch.tv/kraken/oauth2/token" ,
+	# 		:query => { :client_id => "9n260py2zhrn2hmfol9a62cfuguuhs4" ,
+	# 			:client_secret => "kqxdgcamsetrudw3dpspb0d3otm8n3a",
+	# 			:grant_type => "authorization_code",
+	# 			:redirect_uri => "http://localhost:3000/twitch/logged",
+	# 			:code => (params[:code]),
+	# 		})
+
+	# 	@twitchsig = HTTParty.get("https://api.twitch.tv/api/vods/" + @url + "/access_token?as3=" + @twitchoauth['access_token'])	
+		
+	# 	@twitch_q_playlist = HTTParty.get("http://usher.justin.tv/vod/" + @url + "?nauthsig=" + @twitchsig['sig']  + "&nauth=" + @twitchsig['token'])
+	# 	@dl_url = @twitch_q_playlist.split("\n").select{|l| l.start_with? "http"}[0]
+
+
+	# 	@twitch_e_playlist = HTTParty.get(@dl_url)
+	# 	@first_part = @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[720..735]
+
+
+	# 	@dl_url_dl =  @dl_url.slice(0..(@dl_url.index('/index'))) + @first_part[0]
+	# 	# @dl_url_dl = @dl_url.sub("index-dvr.m3u8","") + @first_part
+	# 	puts @dl_url_dl
+
+	# 	binding.pry 
+
+
+	# end
+
 
     end
 

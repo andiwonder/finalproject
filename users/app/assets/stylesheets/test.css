@@ -366,47 +366,57 @@ div.ui.red.card.slick-slide{
 #match_main_container{
     width: 100vw;
     height: 100vh;
+    background-image: url('/assets/background/dk_bg.png');
+    background-size: cover;
+    color: white;
 }
 
 #match_details_sidebar {
     display: inline-block;
     height: 100%;
     width: 20%;
-    border: 10px solid red;
+    /*border: 10px solid red;*/
     vertical-align: top;
 }
 
 #match_details_main {
     display: inline-block;
+    margin-left: 5%;
     height: 100%;
-    width: 75%;
-    border: 10px solid yellow;
+    width: 70%;
+    /*border: 10px solid yellow;*/
 }
 #match_overview{
     width: 85%;
     height: 15%;
-    border: 2px solid blue;
+ /*   border: 2px solid blue;*/
 
 }
 #radiant_side{
     margin-top: 30px;
     width: 85%;
-    height: 30%;
-    border: 2px solid green;
+    height: 35%;
+/*    border: 2px solid green;*/
 
 }
 #dire_side{
     margin-top: 30px;
     width: 85%;
-    height: 30%;
-    border: 2px solid red;
+    height: 35%;
+    /*border: 2px solid red;*/
 
 }
 .match_details.ui.vertical.text.menu{
     margin-top: 15% !important;
 }
+
+.ui.vertical.text.menu .item{
+    color: white !important;
+}
+
+
 table{
-    font-size: 10px;
+    font-size: 12px;
 }
 
 td{
@@ -415,13 +425,23 @@ td{
 }
 
 .match_list_items{
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 24px;
+    padding: 0px;
 }
 
 .match_list_heros{
-    width: 35px;
-    height: 30px;
+    width: 45px;
+    height: 27px;
 }
 
+.match_view_player_avatar{
+    width: 27px;
+    height: 27px;
+}
 
+.player_personaname{
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
