@@ -1,0 +1,26 @@
+.notes_type_image{
+	width: 28px;
+	height: 28px;
+}
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+#d3_minimap_chart{
+	height: 600px;
+	width: 1000px;
+	border: 2px solid red;
+	overflow: scroll;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+      stroke-width: 0;
+}

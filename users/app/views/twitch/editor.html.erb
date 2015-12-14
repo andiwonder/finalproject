@@ -133,6 +133,7 @@
 
 </div>
 
+<!--<%= Rails.application.secrets.twitch_api_key %>
 
 
 <!-- 
@@ -143,13 +144,6 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 
 
 <script type="text/javascript">
-
-	function toggleAutoComplete(){
-		console.log("the festival")
-		$("#ex2").slider({
-			tooltip: 'always'
-		});	
-		var slider = new Slider('#ex2', {});
 
 		$('#notes_twitch_icon').click(function(){
 			console.log("clicked");
@@ -167,9 +161,5 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 			debugger
 			console.log(this); 
 		});
-	 }
-
- 	$(document).ready(function(){ toggleAutoComplete() });
- 	document.addEventListener('page:load', function(){ toggleAutoComplete() });
 	
 </script>

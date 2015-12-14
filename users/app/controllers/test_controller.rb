@@ -164,7 +164,7 @@ class TestController < ApplicationController
 
 				if @player['account_id'] == (76561197981778464 - 76561197960265728)
 					puts "found you!"
-					@my_id = 1
+					@my_id = User.find(session[:user_id])
 				else
 					@my_id = nil
 				end

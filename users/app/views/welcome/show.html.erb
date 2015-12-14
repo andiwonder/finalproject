@@ -1,7 +1,105 @@
-<br>
-<br>
 
-<p>Dota Empower is a place to look at your stats and gain information</p>
+<br>
+<br>
+<div id="welcome_background_player_container">
+	<div id="welcome_background_player"></div>
+</div>
+
+
+<div id="welcome_logo_container">
+	
+	<img id="welcome_tv_icon" src="/assets/book2.png">
+	<h1> Empower</h1>
+	<h2>Improve by learning from your mistakes</h2>
+
+</div>
+
+<div id="welcome_features_pane">
+	<div class="ui inverted three item menu">
+	  <a id="welcome_stats_anchor" class="item">
+		<i class="fa fa-bar-chart fa-5x"></i><br>
+	  	Stats
+	  </a>
+	  <a id="welcome_notes_anchor" class="item">
+	  	<i class="fa fa-book fa-5x"></i>
+	  	Notes
+	  </a>
+	  <a id="welcome_highlight_anchor" class="item">
+	  	<i class="fa fa-television fa-5x"></i>
+	  	Highlight
+	  </a>
+	</div>
+</div>
+
+<div id="stats_feature" class="welcome_features_display">
+	<div class="stats_divs" id="stats_div1">
+		<img class="welcome_feature_stats_img" src="/assets/features/feature_1.png"><br>
+		<span>Stats Homepage</span><br>
+		<span>Look at your activity(time played), playstyle graph, common matchups, and group performance</span>
+	</div>
+	<div class="stats_divs" id="stats_div2">
+		<img class="welcome_feature_stats_img" src="/assets/features/feature_2.png">
+				<h1>Match History</h1>
+		<h1>Look at </h1>
+	</div>
+	<div class="stats_divs" id="stats_div3">
+		<img class="welcome_feature_stats_img" src="/assets/features/feature_3_v2.png"><br>
+		<span>Hero performances</span><br>
+		<span>Figure out if you really are good with the hero you think you are good with</span>
+	</div>
+	<div class="stats_divs" id="stats_div4">
+		<img class="welcome_feature_stats_img" src="/assets/features/feature_4.png">
+	</div>
+</div>
+<div id="notes_feature"  class="welcome_features_display">
+	<img id="welcome_feature_stats_img_big" src="/assets/features/feature_5_v2.png">
+</div>
+<div  id="highlights_feature" class="welcome_features_display">
+	<img id="welcome_feature_stats_img_big_vids" src="/assets/features/feature_6.png">
+</div>
+
+
+<div id="welcome_login_form">
+    <h2 class="ui teal image header">
+      <img src="/assets/book2.png" class="image">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <form class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="email" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="ui fluid large teal submit button">Login</div>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+
+    <div class="ui message">
+      New to us? <a href="#">Sign Up</a>
+    </div>
+ </div>
+
+
+<!-- <img id="welcome_tv_icon" src="/assets/clipboard.png"> -->
+<!-- <img src="/assets/empower_logo_white.png"> -->
+<!-- 	<iframe id="background_vid" width="1280px" height="720px" src="https://www.youtube.com/embed/rVeMiVU77wo?autoplay=1&rel=0&showinfo=0&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe> -->
+
+
+
+<!-- <p>Dota Empower is a place to look at your stats and gain information</p>
 <img src="/assets/fav_hero_display.png">
 <video controls src="/assets/videos/file.mp4"></video>
 
@@ -23,4 +121,73 @@
 <h3>Youtube</h3>
 <p>Exported videos to youtube can be edited and highlighted</p>
 
-<h3> </h3>
+<h3> </h3> -->
+
+<script type="text/javascript">
+	  // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      var view_height = $( window ).height();
+      var view_width = Math.floor(view_height*(16/9));
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('welcome_background_player', {
+          // height: view_height,
+          height: '720',
+          width: '1280',
+          // width: view_width,
+          videoId: 'U1CqlDNgP_E',
+          playerVars: { 'rel': 0 , 
+          'modestbranding' : 1,
+          'autoplay': 1, 
+          'controls': 0,
+          'autohide':1,
+          'wmode':'opaque',
+          'showinfo' : 0,
+          'iv_load_policy': 3},
+          events: {
+            'onReady': onPlayerReady,
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+        event.target.mute();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+
+        $('#welcome_notes_anchor').click(function(){
+			console.log("clicked");
+			$('#highlights_feature').hide();
+			$('#stats_feature').hide();
+			$('#notes_feature').show();
+		});
+
+
+      	$('#welcome_stats_anchor').click(function(){
+			console.log("clicked");
+			$('#highlights_feature').hide();
+			$('#notes_feature').hide();
+			$('#stats_feature').show();
+		});
+
+
+      	$('#welcome_highlight_anchor').click(function(){
+			console.log("highlight clicked");
+			$('#stats_feature').hide();
+			$('#notes_feature').hide();
+			$('#highlights_feature').show();
+		});
+
+</script>

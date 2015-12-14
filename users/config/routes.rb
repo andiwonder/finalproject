@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/twitch' => 'twitch#index'
   get '/twitch/logged' => 'twitch#logged'
   get '/twitch/edit' => 'twitch#editor'
+  get '/twitch/notes' => 'twitch#notes'
 
   get '/chin/:swap' => 'test#chin'
   get '/chin2' => 'test#chin2'

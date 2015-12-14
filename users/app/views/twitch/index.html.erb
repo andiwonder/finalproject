@@ -1,2 +1,101 @@
 <a 
 href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=9n260py2zhrn2hmfol9a62cfuguuhs4&redirect_uri=http://localhost:3000/twitch/logged">log in to twitch</a>
+
+<script type="text/javascript">
+	
+	
+var dataset = [{"id":110, "time":1360580745797, "userName":"pinky", "activity":"respawn"},
+               {"id":111, "time":1360580745798, "userName":"perky", "activity":"change direction"},
+               {"id":111, "time":1360580745799, "userName":"perky", "activity":"change direction"},
+               {"id":111, "time":1360580745797, "userName":"perky", "activity":"change direction"},
+               {"id":111, "time":1361580745797, "userName":"perky", "activity":"change direction"},
+               {"id":111, "time":1361580745798, "userName":"perky", "activity":"change direction"},
+               {"id":112, "time":1360580745797, "userName":"clyde", "activity":"caught pacman"},
+               {"id":113, "time":1360580745797, "userName":"perky", "activity":"respawn"},
+               {"id":114, "time":1360580745797, "userName":"perky", "activity":"caught pacman"},
+               {"id":114, "time":1361580745797, "userName":"perky", "activity":"caught pacman"},
+               {"id":114, "time":1362580745797, "userName":"perky", "activity":"caught pacman"},
+               {"id":114, "time":1363580745797, "userName":"perky", "activity":"caught pacman"},
+               {"id":110, "time":1361580745797, "userName":"pinky", "activity":"respawn"},
+               {"id":115, "time":1360580745797, "userName":"clyde", "activity":"respawn"}]
+
+
+var margin = {top: 20, right: 80, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range( [height,0] );
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var color = d3.scale.category10();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var dateFormat = d3.time.format("%x");
+
+var nestedData = d3.nest()
+    .key(function(d) { return d.activity; })
+    .key(function(d) { return dateFormat(new Date(d.time));})
+    .entries(dataset);
+
+drawMainGraph();
+
+function drawMainGraph() {
+
+    var line = d3.svg.line()
+        .interpolate("linear")
+        .x( function(d) {return x(dateFormat.parse(d.key)) } )
+        .y( function(d) {return y(d.values.length) } );
+
+    x.domain( d3.extent( dataset, function(d) { return new Date(d.time) } ) );
+    y.domain( [ 0, d3.max( nestedData, function(d) { return d.values.length } ) ]);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Count");
+
+
+    var activityLine = svg.selectAll(".activity")
+      .data( nestedData )
+      .enter()
+        .append("g")
+        .attr("class", "activity")
+        .attr("id", function(d) { return "activity-" + d.key } );
+
+    activityLine.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d.values); } )
+      .style("stroke", function(d) { return color(d.key); } );
+}
+
+
+
+
+
+</script>

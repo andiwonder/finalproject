@@ -1,0 +1,88 @@
+#welcome_background_player_container{
+	position: absolute;
+	margin-top: -100px;
+	overflow: hidden;
+	z-index: -1;
+}
+
+#welcome_tv_icon{
+	width: 256px;
+}
+
+#welcome_logo_container{
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+}
+#welcome_logo_container h1{
+	font-size: 10em;
+	color: white;
+	margin-top: -60px;
+	font-family: 'Cardo', serif;
+}
+#welcome_logo_container h2{
+	font-size: 4em;
+	color: red;
+	margin-top: -30px;
+    font-family: 'Cardo', serif;
+}
+#welcome_features_pane{
+	margin-top: -15px;
+	width: 100vw;
+	display: block;
+}
+.welcome_features_display{
+	width: 100vw;
+	height: 85vh;
+	background-color: rgba(0, 0, 0, 0.87);
+	/*background-color: rgba(34, 36, 38, 0.0980392);*/
+}
+#notes_feature{
+	display: none;
+}
+#stats_feature{
+	
+}
+#highlights_feature{
+	display: none;
+}
+/*.stats_divs::before {
+    position: absolute;
+    content: '';
+    top: 0%;
+    right: 0px;
+    height: 100%;
+    width: 1px;
+    background: rgba(34, 36, 38, 0.1);
+}*/
+#stats_div1,#stats_div2,#stats_div3,#stats_div4{ 
+	width: 50%; 
+	height: 50%; 
+	float: left;
+	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; 
+	color: #999;
+	font-size: 1em;
+	text-align: center;
+}
+.welcome_feature_stats_img{
+	width: 60%;
+	margin-left: 5%;
+	margin-top: 3%;
+}
+#welcome_feature_stats_img_big{
+	width: 55%;
+	margin-left: 15%;
+	margin-top: 5%;
+}
+#welcome_feature_stats_img_big_vids{
+	width: 55%;
+	margin-left: 22%;
+	margin-top: 5%;	
+}
+#welcome_login_form{
+	width: 25vw;
+	margin: 0 auto;
+	padding-top: 3%;
+	padding-bottom: 5%;
+
+}
