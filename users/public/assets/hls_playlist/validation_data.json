@@ -1,0 +1,380 @@
+{
+  "dataVersion" : 1,
+  "independentSegments" : false,
+  "parsedSegmentsCount" : 19,
+  "hasDiscSequenceTag" : true,
+  "discontinuities" : [
+    {
+      "segments" : [
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/11.ts",
+          "dataID" : 1,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 0,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/12.ts",
+          "dataID" : 2,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 1,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/13.ts",
+          "dataID" : 3,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 2,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/14.ts",
+          "dataID" : 4,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 3,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/15.ts",
+          "dataID" : 5,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 4,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/16.ts",
+          "dataID" : 6,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 5,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/17.ts",
+          "dataID" : 7,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 6,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 0,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/18.ts",
+          "dataID" : 8,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 7,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        }
+      ],
+      "measurements" : {
+        "measuredMaxBitrate" : 1752160,
+        "measuredMeanBitrate" : 1685796
+      },
+      "tracks" : [
+        {
+          "trackMediaType" : "\u0000\u0000\u0000\u0000",
+          "trackMediaSubType" : "id3 ",
+          "trackId" : 3
+        },
+        {
+          "trackMediaType" : "soun",
+          "trackAudioChannelCount" : 2,
+          "trackId" : 1,
+          "trackAudioSampleRate" : 48000,
+          "trackMediaSubType" : "aac ",
+          "trackAudioChannelLayout" : "Stereo (L R)"
+        },
+        {
+          "trackVideoIDRStandardDeviation" : 0,
+          "trackId" : 2,
+          "trackVideoWidth" : 1280,
+          "trackVideoLevel" : 41,
+          "trackVideoHeight" : 720,
+          "trackMediaType" : "vide",
+          "trackVideoIDRInterval" : 2,
+          "trackVideoIsInterlaced" : false,
+          "trackVideoProfile" : 77,
+          "trackMediaSubType" : "avc1"
+        }
+      ]
+    },
+    {
+      "segments" : [
+        {
+          "discontinuityDomain" : 1,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/21.ts",
+          "dataID" : 9,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 8,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 1,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/22.ts",
+          "dataID" : 10,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 9,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 1,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/23.ts",
+          "dataID" : 11,
+          "videoFrameRate" : 30.00750187546886,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 10,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 1,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/24.ts",
+          "dataID" : 12,
+          "videoFrameRate" : 30.00504286434695,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 11,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        }
+      ],
+      "measurements" : {
+        "measuredMaxBitrate" : 1749528,
+        "measuredMeanBitrate" : 1670098
+      },
+      "tracks" : [
+        {
+          "trackMediaType" : "\u0000\u0000\u0000\u0000",
+          "trackMediaSubType" : "id3 ",
+          "trackId" : 3
+        },
+        {
+          "trackMediaType" : "soun",
+          "trackAudioChannelCount" : 2,
+          "trackId" : 1,
+          "trackAudioSampleRate" : 48000,
+          "trackMediaSubType" : "aac ",
+          "trackAudioChannelLayout" : "Stereo (L R)"
+        },
+        {
+          "trackVideoIDRStandardDeviation" : 120.2493970878857,
+          "trackId" : 2,
+          "trackVideoWidth" : 1280,
+          "trackVideoLevel" : 41,
+          "trackVideoHeight" : 720,
+          "trackMediaType" : "vide",
+          "trackVideoIDRInterval" : 47.45,
+          "trackVideoIsInterlaced" : false,
+          "trackVideoProfile" : 77,
+          "trackMediaSubType" : "avc1"
+        }
+      ]
+    },
+    {
+      "segments" : [
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/3.ts",
+          "dataID" : 13,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 12,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/4.ts",
+          "dataID" : 14,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 13,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/5.ts",
+          "dataID" : 15,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 14,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/6.ts",
+          "dataID" : 16,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 15,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/7.ts",
+          "dataID" : 17,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 16,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/8.ts",
+          "dataID" : 18,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 17,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        },
+        {
+          "discontinuityDomain" : 2,
+          "segmentByteRangeLength" : 0,
+          "url" : "http:\/\/d10bybrdwoa4y6.cloudfront.net\/user1\/9.ts",
+          "dataID" : 19,
+          "videoFrameRate" : 29.99250187453136,
+          "segmentCryptMethod" : "NONE",
+          "videoStartsWithIDR" : true,
+          "segmentDurationTag" : 4,
+          "mediaSequence" : 18,
+          "sslContentDeliveredSecurely" : false,
+          "segmentByteRangeOffset" : 0
+        }
+      ],
+      "measurements" : {
+        "measuredMaxBitrate" : 1747272,
+        "measuredMeanBitrate" : 1681472
+      },
+      "tracks" : [
+        {
+          "trackMediaType" : "\u0000\u0000\u0000\u0000",
+          "trackMediaSubType" : "id3 ",
+          "trackId" : 3
+        },
+        {
+          "trackMediaType" : "soun",
+          "trackAudioChannelCount" : 2,
+          "trackId" : 1,
+          "trackAudioSampleRate" : 48000,
+          "trackMediaSubType" : "aac ",
+          "trackAudioChannelLayout" : "Stereo (L R)"
+        },
+        {
+          "trackVideoIDRStandardDeviation" : 0,
+          "trackId" : 2,
+          "trackVideoWidth" : 1280,
+          "trackVideoLevel" : 41,
+          "trackVideoHeight" : 720,
+          "trackMediaType" : "vide",
+          "trackVideoIDRInterval" : 2,
+          "trackVideoIsInterlaced" : false,
+          "trackVideoProfile" : 77,
+          "trackMediaSubType" : "avc1"
+        }
+      ]
+    }
+  ],
+  "measuredMaxBitrate" : 1752160,
+  "gzipEncoded" : false,
+  "url" : "http:\/\/localhost:3000\/assets\/hls_playlist\/playlist.m3u8",
+  "playlistKind" : "media",
+  "validatorTimestamp" : "2015-12-18T02:04:55-05:00",
+  "sslContentDeliveredSecurely" : false,
+  "validatorVersion" : "1.1(151117)",
+  "dataID" : 0,
+  "messages" : [
+    {
+      "errorStatusCode" : -1,
+      "errorComment" : "Illegal MIME type",
+      "errorDetail" : "MIME type: text\/plain"
+    }
+  ],
+  "processedSegmentsCount" : 19,
+  "playlistTargetDuration" : 4,
+  "hasEndTag" : true,
+  "playlistType" : "VOD",
+  "measuredMeanBitrate" : 1680898
+}

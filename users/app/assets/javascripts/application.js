@@ -29,7 +29,11 @@
 //= require_tree ./backbone/collections
 //= require_tree ./backbone/views
 //= require_tree ./backbone/routers
+//= require_tree ./videojs
 
+
+//= require jquery.ui.widget
+//= require z.jquery.fileupload
 //= require ./app.js
 //= require_tree .
 

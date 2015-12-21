@@ -1,0 +1,9 @@
+#EXTM3U
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="chunked",NAME="Source",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2198357,CODECS="avc1.4D4029,mp4a.40.2",VIDEO="chunked"
+http://localhost:3000/assets/hls_playlist/index.m3u8
+
+
+
+
+

@@ -1,15 +1,24 @@
 #notes_main_container{
 	display: inline-block;
 
+
 }
 
 #notes_create_sidebar{
-	margin-left: 10px;
+	margin-left: 910px;
 	display: inline-block;
-	width: 350px;
-	height: 570px;
+	width: 250px;
+	height: auto;
 	border: 2px solid red;
 	background-color: #F8F8F8;
+	font-size: .9em;
+}
+
+
+#notes_main_container div.ui.rail{
+	margin-top: 72px;
+	width: auto;
+	height: auto;
 }
 
 #notes_create_main{
@@ -109,7 +118,7 @@
 	height: 10px;
 }
 
-#notes_start_input{
+#noteui image notes_type_images_start_input{
 	margin-left: 40px;
 }
 #notes_end_input{
@@ -142,4 +151,8 @@
 	height: 160px;
 	display: inline-block;
 	margin-bottom: 40px;
+}
+.ui.relaxed.celled.list li{
+	width: 190px;
+	margin-left: 10px;
 }

@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
 
+  get 'uploads/new'
+
+  get 'uploads/create'
+
+  get 'uploads/index'
+
   root 'users#show'
   get '/' => 'users#show'
   get '/welcome' => 'welcome#show'
   get '/index' => 'welcome#index'
   get '/selection' => 'welcome#selection'
+  get '/uploads/directupload' => 'uploads#directupload'
 
   resources :users
+  resources :uploads
+
 
   get '/users/:id/matches' => 'matchs#index'
 
@@ -19,6 +28,7 @@ Rails.application.routes.draw do
   get '/twitch/logged' => 'twitch#logged'
   get '/twitch/edit' => 'twitch#editor'
   get '/twitch/notes' => 'twitch#notes'
+  get '/twitch/video' => 'twitch#video'
 
   get '/chin/:swap' => 'test#chin'
   get '/chin2' => 'test#chin2'

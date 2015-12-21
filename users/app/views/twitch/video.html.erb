@@ -1,0 +1,194 @@
+<div id="twitch_video_player_container">
+  
+  <video id='example-video' class="video-js vjs-default-skin" controls
+      data-setup='{"playbackRates": [1, 1.5, 2] }'>
+  <source
+     src="/assets/hls_playlist/playlist.m3u8"
+     type="application/x-mpegURL">
+</video>
+
+
+
+</div>
+
+<div id="twitch_video_notes_container">
+  <span id="twitch_video_notes_display"></span>
+</div>
+
+<script>
+
+
+var notes = $("#twitch_video_notes_display")
+
+var player = videojs('example-video',{
+  hls: {
+    withCredentials: true
+  }
+});
+player.play();
+
+
+0 , 32 , 48
+
+var video = document.getElementsByTagName("video")[0];
+video.addEventListener("timeupdate", function() {
+if (video.currentTime >= 0 && video.currentTime <= 3) {
+video.playbackRate = .5;
+video.prop('muted', true); //mute
+notes.text("Game sense: Too aggresive/Dive. Should have backed after kill. Knew lesh had euls and could cc and kill me.");
+}
+else if (video.currentTime >= 3 && video.currentTime <= 32){
+video.playbackRate = 1;
+video.prop('muted', false); //mute
+}
+else if (video.currentTime >= 32 && video.currentTime <= 35) {
+video.playbackRate = .5;
+video.prop('muted', true); //mute
+notes.text("Game sense: Too aggresive/Dive. Understimated TA's damage and died without using spells");
+}
+else if (video.currentTime >= 35 && video.currentTime <= 48){
+video.playbackRate = 1;
+video.prop('muted', false); //mute
+}
+else if (video.currentTime >= 48 && video.currentTime <= 51) {
+video.playbackRate = .5;
+notes.text("Game sense: Too aggresive/Dive. Should have know lesh would euls. Could have avoided death by looking at minimap , tping out , stay behind front line");
+video.prop('muted', true); //mute
+}
+else if (video.currentTime >= 51){
+video.playbackRate = 1;
+video.prop('muted', false); //mute
+}
+}, false);
+
+
+</script>
+
+
+<!-- 
+<video id="video"></video>
+<script>
+  if(Hls.isSupported()) {
+    var video = document.getElementById('video');
+    var hls = new Hls();
+    hls.loadSource('/assets/hls_playlist/playlist.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+  });
+ }
+
+ hls.on(Hls.Events.ERROR,function(event,data) {
+   console.log(event)
+    });
+</script>
+
+ -->
+
+
+<!-- "#EXTM3U\n#EXT-X-TWITCH-INFO:CLUSTER=\"edgecast_vod\",REGION=\"NA-EAST\",MANIFEST-CLUSTER=\"edgecast_vod\",USER-IP=\"173.52.217.66\"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"chunked\",NAME=\"Source\",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1684339,CODECS=\"avc1.4D4029,mp4a.40.2\",RESOLUTION=\"1280x720\",VIDEO=\"chunked\"
+http://vod.edgecast.hls.twitch.tv/v1/AUTH_system/vods_c67b/lqt1_18226245184_363840873/chunked/index-muted-OB5LDZ5SQP.m3u8
+"
+
+"#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:4
+#ID3-EQUIV-TDTG:2015-12-14T05:56:44
+#EXT-X-PLAYLIST-TYPE:EVENT
+
+
+#EXT-X-TWITCH-ELAPSED-SECS:0.0
+#EXT-X-TWITCH-TOTAL-SECS:4119.9
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=0&end_offset=842991
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=842992&end_offset=1714747
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=1714748&end_offset=2527095
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=2527096&end_offset=3369523
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=3369524&end_offset=4277375
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=4277376&end_offset=5054567
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=5054568&end_offset=5897747
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=5897748&end_offset=6740363
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=6740364&end_offset=7583167
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=7583168&end_offset=8423903
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=8423904&end_offset=9265955
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=9265956&end_offset=10107631
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=10107632&end_offset=10951939
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=10951940&end_offset=11793615
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=11793616&end_offset=12636231
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=12636232&end_offset=13477155
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=13477156&end_offset=14320147
+#EXTINF:4.000,
+index-0000000029-DbkV.ts?start_offset=14320148&end_offset=15161635
+ -->
+<!-- 
+
+ global-330298059b27232a9482211760ecb5b9.js:17 JQMIGRATE: Logging is active
+global-330298059b27232a9482211760ecb5b9.js:17 JQMIGRATE: jQuery.browser is deprecated
+global-330298059b27232a9482211760ecb5b9.js:15 The specified value "!" does not conform to the required format.  The format is "#rrggbb" where rr, gg, bb are two-digit hexadecimal numbers.
+chrome-extension://boadgeojelhgndaghljhdicfkmllpafd/cast_sender.js Failed to load resource: net::ERR_FAILED
+chrome-extension://dliochdbjfkdbacpmhlcpmleaejidimm/cast_sender.js Failed to load resource: net::ERR_FAILED
+chrome-extension://hfaagokkkhdbgiakmmlclaapfelnkoah/cast_sender.js Failed to load resource: net::ERR_FAILED
+chrome-extension://fmfcbgogabcbclcofgocippekhfcmgfj/cast_sender.js Failed to load resource: net::ERR_FAILED
+chrome-extension://enhhojjnijigcajfphajepfemndkmdlo/cast_sender.js Failed to load resource: net::ERR_FAILED
+global-330298059b27232a9482211760ecb5b9.js:30 No cast extension found
+http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+http://s.amazon-adsystem.com/iui3?d=3p-hbg&ex-src=twitch.tv&ex-hargs=v%3D1.0%3Bc%3D8858214122683%3Bp%3De75425fb-5407-7bd5-fd20-f462e98a8777 Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: CAP.
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: GLOBALUSERSTATE.
+http://api.twitch.tv/api/users/lqt1/tickets?channel=v30676167&on_site=1 Failed to load resource: the server responded with a status of 404 (Not Found)
+http://cdn-static.liverail.com/js/companions.js?_=1450499314753 Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+VM177 30676167:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/css/player.bd9cbb93.css. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+VM177 30676167:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/jquery.4a54b4c0.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+VM177 30676167:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/jquery-ui.337218f2.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+30676167:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/chromecast.f895d9e6.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+30676167:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/html/player.3e03b9e3.html. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+http://pagead2.googlesyndication.com/pagead/show_companion_ad.js Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+s-dal5-nss-36.firebaseio.com/.lp?dframe=t&id=703964&pw=W8gpXytJrZ&ns=ttv-5:5 Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check http://xhr.spec.whatwg.org/.
+http://s0.2mdn.net/instream/video/client.js Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+http://usher.twitch.tv/vod/30676167?allow_spectre=true&nauth=%7B%22user_id%…ce=true&nauthsig=ba1fa9fae7ec3145bacbf6e5424d8c7f4997d03c&player=twitchweb Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+global-330298059b27232a9482211760ecb5b9.js:30 TwitchPlayer: ERROR - Error loading URL: [IOErrorEvent type="ioError" bubbles=false cancelable=false eventPhase=2 text="Error #2032"]
+http://api.twitch.tv/api/channels/lqt1/product?on_site=1 Failed to load resource: the server responded with a status of 404 (Not Found)
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: CAP.
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: GLOBALUSERSTATE.
+http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: 353.
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: 366.
+http://api.twitch.tv/api/users/lqt1/tickets?channel=v29875810&on_site=1 Failed to load resource: the server responded with a status of 404 (Not Found)
+http://cdn-static.liverail.com/js/companions.js?_=1450499314760 Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+29875810:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/css/player.bd9cbb93.css. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+29875810:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/jquery.4a54b4c0.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+29875810:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/jquery-ui.337218f2.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+29875810:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/js/chromecast.f895d9e6.js. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+29875810:1 XMLHttpRequest cannot load http://secureplayer.twitch.tv/html/player.3e03b9e3.html. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.twitch.tv' is therefore not allowed access.
+http://pagead2.googlesyndication.com/pagead/show_companion_ad.js Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: CAP.
+http://s0.2mdn.net/instream/video/client.js Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+http://usher.twitch.tv/vod/29875810?player=twitchweb&nauthsig=951a4b8c2b70e…2%3A%7B%22restricted_bitrates%22%3A%5B%5D%7D%2C%22privileged%22%3Afalse%7D Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+global-330298059b27232a9482211760ecb5b9.js:30 TwitchPlayer: ERROR - Error loading URL: [IOErrorEvent type="ioError" bubbles=false cancelable=false eventPhase=2 text="Error #2032"]
+player.js:2 'KeyboardEvent.keyLocation' is deprecated. Please use 'KeyboardEvent.location' instead.
+global-330298059b27232a9482211760ecb5b9.js:16 XHR finished loading: POST "https://pubster.twitch.tv/publish".send @ global-330298059b27232a9482211760ecb5b9.js:16p.extend.ajax @ global-330298059b27232a9482211760ecb5b9.js:16a.value @ emberapp-a0b8ee7fa20d5c475788947ae0609526.js:25
+global-330298059b27232a9482211760ecb5b9.js:16 XHR finished loading: POST "https://presence.twitch.tv/v1/online".send @ global-330298059b27232a9482211760ecb5b9.js:16p.extend.ajax @ global-330298059b27232a9482211760ecb5b9.js:16doHeartbeat @ tmi-v3.rccd7f35431c97ece049ef9b5336e2d63210e049d.js:1(anonymous function) @ tmi-v3.rccd7f35431c97ece049ef9b5336e2d63210e049d.js:1
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: CAP.
+global-330298059b27232a9482211760ecb5b9.js:30 TMI.js [irc] WARNING: Could not parse IRC message: GLOBALUSERSTATE.
+global-330298059b27232a9482211760ecb5b9.js:16 XHR finished loading: POST "https://pubster.twitch.tv/publish".send @ global-330298059b27232a9482211760ecb5b9.js:16p.extend.ajax @ global-330298059b27232a9482211760ecb5b9.js:16a.value @ emberapp-a0b8ee7fa20d5c475788947ae0609526.js:25
+global-330298059b27232a9482211760ecb5b9.js:16 XHR finished loading: POST "https://presence.twitch.tv/v1/online".send @ global-330298059b27232a9482211760ecb5b9.js:16p.extend.ajax @ global-330298059b27232a9482211760ecb5b9.js:16doHeartbeat @ tmi-v3.rccd7f35431c97ece049ef9b5336e2d63210e049d.js:1(anonymous function) @ tmi-v3.rccd7f35431c97ece049ef9b5336e2d63210e049d.js:1 -->

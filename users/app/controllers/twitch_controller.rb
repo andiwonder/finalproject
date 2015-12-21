@@ -1,6 +1,11 @@
 class TwitchController < ApplicationController
 
 	require 'date'
+	require 'open-uri'
+
+	def video
+
+	end
 
 	def index
 
@@ -9,7 +14,7 @@ class TwitchController < ApplicationController
 	end
 
 	def notes
-		@current_user = User.find(session[:user_id])
+		# @current_user = User.find(session[:user_id])
 		@swap = User.find(1)
 		@match_history_icon = []
 		@swap.matches.each do |match|
@@ -49,9 +54,17 @@ class TwitchController < ApplicationController
 		@sixth_vid = "http://www.twitch.tv/revel2k9/v/27683916"
 		@seventh_vid = "http://www.twitch.tv/lqt1/v/28418815"
 		@eight_vid = "http://www.twitch.tv/revel2k9/v/28401075"
+		@weaver_vid = "http://www.twitch.tv/lqt1/v/29875810"
 
 		
-		@url = @eight_vid.split("/")[-1]
+		@url = @weaver_vid.split("/")[-1]
+
+		@timestamps_29875810 = [{start_time: "00:24:56" , end_time: "00:25:05"},
+			{start_time: "00:35:40" , end_time: "00:36:06"},
+			{start_time: "00:43:10" , end_time: "00:43:40"},
+			{start_time: "00:49:40" , end_time: "00:50:00"},
+			{start_time: "01:02:30" , end_time: "01:03:30"},
+			{start_time: "01:05:20" , end_time: "01:06:00"}]
 
 		@timestamps_28401075 = [{start_time: "00:14:20" , end_time: "00:15:20"},
 			{start_time: "00:17:00" , end_time: "00:17:10"},
@@ -109,7 +122,7 @@ class TwitchController < ApplicationController
 
 
 
-	@timestamps_28401075.each do |clip|
+	@timestamps_29875810.each do |clip|
 
 		split_time = clip[:start_time].split(":")
 		total = ((split_time[0].to_i)*3600)+((split_time[1].to_i)*60)+(split_time[2].to_i)
@@ -152,12 +165,37 @@ class TwitchController < ApplicationController
 		# @third_part = @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(@timestamps_27812195[2][:start_time].to_i)..(@timestamps_27812195[2][:end_time].to_i)]
 		@finalarr = []
 
-		@timestamps_28401075.each_with_index do |timestamp , index|
+		@timestamps_29875810.each_with_index do |timestamp , index|
 
 			@temp_time =  @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(timestamp[:start_time].to_i)..(timestamp[:end_time].to_i)]
 			@finalarr.push(@temp_time)
-			@finalarr.flatten!
 		end
+		@finalarr.flatten!
+
+
+		@finalarr.each_with_index do |part,index|
+			@dl_url_test = @prefix + part
+
+			# Make an object in your bucket for your upload
+	    obj = S3_BUCKET.objects["user1/" + index.to_s + ".ts"]
+	    resp = RestClient.get(@dl_url_test)
+
+	    # Upload the file
+	    obj.write(resp.body, acl: :public_read)
+
+	  end
+
+		# @finalarr.each_with_index do |part,index|
+		# 	@dl_url_test = @prefix + part
+		# 	open(index.to_s + ".ts","wb") do |file|
+		# 		  resp = RestClient.get(@dl_url_test)
+  # 				file.write(resp.body)
+		# 	end
+		# end
+
+
+
+		binding.pry
 
 		# open("28401075_final.ts", "wb") do |file|
 			
@@ -250,6 +288,78 @@ end
 	# index-0000000029-h4lR-muted.ts?start_offset=1703844&end_offset=2520327
 
 
+ # "#EXTM3U
+ # #EXT-X-TWITCH-INFO:CLUSTER=\"akamai_vod\",REGION=\"NA-EAST\",MANIFEST-CLUSTER=\"akamai_vod\",USER-IP=\"173.52.217.66\"
+ # #EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"chunked\",NAME=\"Source\",AUTOSELECT=YES,DEFAULT=YES
+ # #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1684339,CODECS=\"avc1.4D4029,mp4a.40.2\",RESOLUTION=\"1280x720\",VIDEO=\"chunked\"
+ # http://vod.ak.hls.ttvnw.net/v1/AUTH_system/vods_c67b/lqt1_18226245184_363840873/chunked/index-muted-OB5LDZ5SQP.m3u8\n"
 
 
+
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:4
+#ID3-EQUIV-TDTG:2015-12-14T05:56:44
+#EXT-X-PLAYLIST-TYPE:EVENT
+
+#EXT-X-TWITCH-ELAPSED-SECS:0.0
+#EXT-X-TWITCH-TOTAL-SECS:4119.9
+#EXTINF:4.000,
+#index-0000000029-DbkV.ts?start_offset=0&end_offset=842991
+
+
+# "index-0000000389-EtVO.ts?start_offset=11791924&end_offset=12626267",
+#  "index-0000000389-EtVO.ts?start_offset=12626268&end_offset=13468695",
+#  "index-0000000389-EtVO.ts?start_offset=13468696&end_offset=14310183",
+#  "index-0000000539-xmDd.ts?start_offset=21061640&end_offset=21917415",
+#  "index-0000000539-xmDd.ts?start_offset=21917416&end_offset=22735967",
+#  "index-0000000539-xmDd.ts?start_offset=22735968&end_offset=23598135",
+#  "index-0000000539-xmDd.ts?start_offset=23598136&end_offset=24421199",
+#  "index-0000000539-xmDd.ts?start_offset=24421200&end_offset=25279043",
+#  "index-0000000569-ihRx.ts?start_offset=0&end_offset=873635",
+#  "index-0000000569-ihRx.ts?start_offset=873636&end_offset=1667747",
+#  "index-0000000659-JN4U.ts?start_offset=14313756&end_offset=15176111",
+#  "index-0000000659-JN4U.ts?start_offset=15176112&end_offset=16043731",
+#  "index-0000000659-JN4U.ts?start_offset=16043732&end_offset=16851003",
+#  "index-0000000659-JN4U.ts?start_offset=16851004&end_offset=17683655",
+#  "index-0000000659-JN4U.ts?start_offset=17683656&end_offset=18559735",
+#  "index-0000000659-JN4U.ts?start_offset=18559736&end_offset=19383739",
+#  "index-0000000659-JN4U.ts?start_offset=19383740&end_offset=20208683",
+#  "index-0000000659-JN4U.ts?start_offset=20208684&end_offset=21049795",
+#  "index-0000000659-JN4U.ts?start_offset=21049796&end_offset=21919295",
+#  "index-0000000749-O1aM.ts?start_offset=21059008&end_offset=21880003",
+#  "index-0000000749-O1aM.ts?start_offset=21880004&end_offset=22777327",
+#  "index-0000000749-O1aM.ts?start_offset=22777328&end_offset=23564483",
+#  "index-0000000749-O1aM.ts?start_offset=23564484&end_offset=24439247",
+#  "index-0000000749-O1aM.ts?start_offset=24439248&end_offset=25248775",
+#  "index-0000000779-BrfG-muted.ts?start_offset=0&end_offset=868747",
+#  "index-0000000959-6GxI-muted.ts?start_offset=5783256&end_offset=6589023",
+#  "index-0000000959-6GxI-muted.ts?start_offset=6589024&end_offset=7214687",
+#  "index-0000000959-6GxI-muted.ts?start_offset=7214688&end_offset=7906151",
+#  "index-0000000959-6GxI-muted.ts?start_offset=7906152&end_offset=8771703",
+#  "index-0000000959-6GxI-muted.ts?start_offset=7214688&end_offset=7906151",
+#  "index-0000000959-6GxI-muted.ts?start_offset=7906152&end_offset=8771703",
+#  "index-0000000959-6GxI-muted.ts?start_offset=8771704&end_offset=9579915",
+#  "index-0000000959-6GxI-muted.ts?start_offset=9579916&end_offset=10403167",
+#  "index-0000000959-6GxI-muted.ts?start_offset=10403168&end_offset=11280375",
+#  "index-0000000959-6GxI-muted.ts?start_offset=11280376&end_offset=12088211",
+#  "index-0000000959-6GxI-muted.ts?start_offset=12088212&end_offset=12936279",
+#  "index-0000000959-6GxI-muted.ts?start_offset=12936280&end_offset=13760283",
+#  "index-0000000959-6GxI-muted.ts?start_offset=13760284&end_offset=14632603",
+#  "index-0000000959-6GxI-muted.ts?start_offset=14632604&end_offset=15447019",
+#  "index-0000000959-6GxI-muted.ts?start_offset=15447020&end_offset=16283995",
+#  "index-0000000959-6GxI-muted.ts?start_offset=16283996&end_offset=17127363",
+#  "index-0000000959-6GxI-muted.ts?start_offset=17127364&end_offset=17963963",
+#  "index-0000000959-6GxI-muted.ts?start_offset=17963964&end_offset=18805639",
+#  "index-0000000989-wn54.ts?start_offset=16759260&end_offset=17602627",
+#  "index-0000000989-wn54.ts?start_offset=17602628&end_offset=18467615",
+#  "index-0000000989-wn54.ts?start_offset=18467616&end_offset=19314179",
+#  "index-0000000989-wn54.ts?start_offset=19314180&end_offset=20129535",
+#  "index-0000000989-wn54.ts?start_offset=20129536&end_offset=20994711",
+#  "index-0000000989-wn54.ts?start_offset=20994712&end_offset=21812699",
+#  "index-0000000989-wn54.ts?start_offset=21812700&end_offset=22654563",
+#  "index-0000000989-wn54.ts?start_offset=22654564&end_offset=23513911",
+#  "index-0000000989-wn54.ts?start_offset=23513912&end_offset=24338667",
+#  "index-0000000989-wn54.ts?start_offset=24338668&end_offset=25205723",
+#  "index-0000001019-m6XL.ts?start_offset=0&end_offset=836975"]
 
