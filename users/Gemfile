@@ -44,6 +44,8 @@ gem 'streamio-ffmpeg'
 
 gem 'aws-sdk', '< 2.0'
 
+gem 'm3u8'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

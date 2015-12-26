@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214024423) do
+ActiveRecord::Schema.define(version: 20151222193620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 20151214024423) do
   end
 
   add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree
+
+  create_table "notes", force: :cascade do |t|
+    t.string   "start_time"
+    t.string   "end_time"
+    t.string   "category"
+    t.string   "player_notes", default: [],              array: true
+    t.string   "vid_url",      default: [],              array: true
+    t.integer  "match_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "notes", ["match_id"], name: "index_notes_on_match_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.integer  "account_id",   limit: 8
@@ -118,5 +131,6 @@ ActiveRecord::Schema.define(version: 20151214024423) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "notes", "matches"
   add_foreign_key "players", "matches"
 end

@@ -2,14 +2,80 @@ class TwitchController < ApplicationController
 
 	require 'date'
 	require 'open-uri'
+	require 'm3u8'
+	require 'tempfile'
+
+	# http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_0.ts
 
 	def video
+
+		vid_urls = Note.select('vid_url').where(match_id: 5)
+		# @test_urls = Hash[vid_urls.pluck(:vid_url)]
+		playlist = M3u8::Playlist.new
+		options = { version: 3, target: 4, playlist_type: 'event' }
+		playlist = M3u8::Playlist.new(options)
+		cloudpath = 'http://d10bybrdwoa4y6.cloudfront.net/'
+
+		vid_urls.each do |paths|
+			paths['vid_url'].each do |url|
+				item = M3u8::SegmentItem.new(duration: 4.0, segment: cloudpath + url)
+				playlist.items << item
+			end	
+			item = M3u8::DiscontinuityItem.new
+			playlist.items << item
+		end
+
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_0.ts')
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_1.ts')
+		# playlist.items << item
+		# item = M3u8::DiscontinuityItem.new
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_8.ts')
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_9.ts')
+		# playlist.items << item
+		# item = M3u8::DiscontinuityItem.new
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_16.ts')
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4.0, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_17.ts')
+		# playlist.items << item
+		# item = M3u8::SegmentItem.new(duration: 4, segment: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_0.ts')
+		# playlist.items << item
+		# options = { codecs: 'avc1.4D4029,mp4a.40.2', uri: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_2.ts' }
+		# item = M3u8::PlaylistItem.new(options)
+		# playlist.items << item
+		# options = { codecs: 'avc1.4D4029,mp4a.40.2', uri: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_3.ts' }
+		# item = M3u8::PlaylistItem.new(options)
+		# playlist.items << item
+		# item = M3u8::PlaylistItem.new{uri: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_2.ts'}
+		# playlist.items << item
+		# item = M3u8::PlaylistItem.new{uri: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_3.ts'}
+		# playlist.items << item
+		# item = M3u8::PlaylistItem.new{uri: 'http://d10bybrdwoa4y6.cloudfront.net/user1/match/4/notes/am_4.ts'}
+		# playlist.items << item
+		# open("test3.m3u8", "wb") do |file|
+  # 		file.write(playlist)
+		# end
+		# file = Tempfile.new(['test2','.m3u8'])
+		# playlist.write(file)
+		# file.close
+		# @playlist_path = file.path
+		# binding.pry
+		
+
 
 	end
 
 	def index
 
 
+
+	end
+
+	def editform
+		binding.pry
 
 	end
 
@@ -38,14 +104,16 @@ class TwitchController < ApplicationController
 
 	def editor
 
-		@twitch_vid_list = HTTParty.get("https://api.twitch.tv/kraken/channels/lqt1/videos?broadcasts=true")
+		@twitch_vid_list = HTTParty.get("https://api.twitch.tv/kraken/channels/lqt1/videos?broadcasts=true&limit=50")
 		
 	end
 
 	def logged
 
-		@farm = (params[:code])
-
+		# @farm = (params[:code])
+		twitch_video_url = JSON.parse(params[:twitch_url])
+		note_match_id = params[:match_id]
+		note_obj = JSON.parse(params[:obj])
 		@first_vid = "http://www.twitch.tv/lqt1/v/27732847"
 		@second_vid = "http://www.twitch.tv/lqt1/v/27727234"
 		@third_vid = "http://www.twitch.tv/lqt1/v/27717222"
@@ -55,99 +123,159 @@ class TwitchController < ApplicationController
 		@seventh_vid = "http://www.twitch.tv/lqt1/v/28418815"
 		@eight_vid = "http://www.twitch.tv/revel2k9/v/28401075"
 		@weaver_vid = "http://www.twitch.tv/lqt1/v/29875810"
+		@am_vid = "http://www.twitch.tv/lqt1/v/31335820"
+		@ember_vid = "http://www.twitch.tv/lqt1/v/31385832"
 
 		
-		@url = @weaver_vid.split("/")[-1]
+		@url =  twitch_video_url['value'].sub('v','')
 
-		@timestamps_29875810 = [{start_time: "00:24:56" , end_time: "00:25:05"},
-			{start_time: "00:35:40" , end_time: "00:36:06"},
-			{start_time: "00:43:10" , end_time: "00:43:40"},
-			{start_time: "00:49:40" , end_time: "00:50:00"},
-			{start_time: "01:02:30" , end_time: "01:03:30"},
-			{start_time: "01:05:20" , end_time: "01:06:00"}]
+	# 	@timestamps_29875810 = [{start_time: "00:24:56" , end_time: "00:25:05"},
+	# 		{start_time: "00:35:40" , end_time: "00:36:06"},
+	# 		{start_time: "00:43:10" , end_time: "00:43:40"},
+	# 		{start_time: "00:49:40" , end_time: "00:50:00"},
+	# 		{start_time: "01:02:30" , end_time: "01:03:30"},
+	# 		{start_time: "01:05:20" , end_time: "01:06:00"}]
 
-		@timestamps_28401075 = [{start_time: "00:14:20" , end_time: "00:15:20"},
-			{start_time: "00:17:00" , end_time: "00:17:10"},
-			{start_time: "00:17:40" , end_time: "00:18:20"},
-			{start_time: "00:20:30" , end_time: "00:20:40"},
-			{start_time: "00:21:50" , end_time: "00:22:40"}]
+	# 	@timestamps_28401075 = [{start_time: "00:14:20" , end_time: "00:15:20"},
+	# 		{start_time: "00:17:00" , end_time: "00:17:10"},
+	# 		{start_time: "00:17:40" , end_time: "00:18:20"},
+	# 		{start_time: "00:20:30" , end_time: "00:20:40"},
+	# 		{start_time: "00:21:50" , end_time: "00:22:40"}]
 
-		@timestamps_28418815 = [{start_time: "00:20:04" , end_time: "00:20:28"},
-			{start_time: "00:29:40" , end_time: "00:30:10"},
-			{start_time: "00:48:00" , end_time: "00:49:40"}]
+	# 	@timestamps_28418815 = [{start_time: "00:20:04" , end_time: "00:20:28"},
+	# 		{start_time: "00:29:40" , end_time: "00:30:10"},
+	# 		{start_time: "00:48:00" , end_time: "00:49:40"}]
 
 		
-		@timestamps_27812195 = [
-			{start_time: "00:05:40" , end_time: "00:06:00"},
-			{start_time: "00:08:20" , end_time: "00:09:00"},
-			{start_time: "00:14:20" , end_time: "00:14:50"},
-			{start_time: "00:20:40" , end_time: "00:21:00"},
-			{start_time: "00:24:30" , end_time: "00:24:56"},
-			{start_time: "00:26:40" , end_time: "00:27:10"},
-			{start_time: "00:32:40" , end_time: "00:33:30"},
-			{start_time: "00:35:30" , end_time: "00:36:00"},
-			{start_time: "00:38:20" , end_time: "00:38:40"},
-			{start_time: "00:44:50" , end_time: "00:45:15"},
-			{start_time: "00:50:20" , end_time: "00:50:50"},
-			{start_time: "00:53:20" , end_time: "00:54:40"},
-			{start_time: "00:56:30" , end_time: "00:57:07"},
-			{start_time: "00:59:10" , end_time: "01:00:00"},
-			{start_time: "01:03:00" , end_time: "01:03:30"},
-			{start_time: "01:09:20" , end_time: "01:10:04"},
-			{start_time: "01:13:30" , end_time: "01:14:04"},
-			{start_time: "01:14:30" , end_time: "01:16:10"},
-			{start_time: "01:19:30" , end_time: "01:20:30"},
-			{start_time: "01:26:50" , end_time: "01:28:00"}]
+	# 	@timestamps_27812195 = [
+	# 		{start_time: "00:05:40" , end_time: "00:06:00"},
+	# 		{start_time: "00:08:20" , end_time: "00:09:00"},
+	# 		{start_time: "00:14:20" , end_time: "00:14:50"},
+	# 		{start_time: "00:20:40" , end_time: "00:21:00"},
+	# 		{start_time: "00:24:30" , end_time: "00:24:56"},
+	# 		{start_time: "00:26:40" , end_time: "00:27:10"},
+	# 		{start_time: "00:32:40" , end_time: "00:33:30"},
+	# 		{start_time: "00:35:30" , end_time: "00:36:00"},
+	# 		{start_time: "00:38:20" , end_time: "00:38:40"},
+	# 		{start_time: "00:44:50" , end_time: "00:45:15"},
+	# 		{start_time: "00:50:20" , end_time: "00:50:50"},
+	# 		{start_time: "00:53:20" , end_time: "00:54:40"},
+	# 		{start_time: "00:56:30" , end_time: "00:57:07"},
+	# 		{start_time: "00:59:10" , end_time: "01:00:00"},
+	# 		{start_time: "01:03:00" , end_time: "01:03:30"},
+	# 		{start_time: "01:09:20" , end_time: "01:10:04"},
+	# 		{start_time: "01:13:30" , end_time: "01:14:04"},
+	# 		{start_time: "01:14:30" , end_time: "01:16:10"},
+	# 		{start_time: "01:19:30" , end_time: "01:20:30"},
+	# 		{start_time: "01:26:50" , end_time: "01:28:00"}]
 
-		@timestamps = [
-	{start_time: "01:30:30" , end_time: "01:30:50"},
-	{start_time: "01:35:20" , end_time: "01:35:40"},
-	{start_time: "01:35:50" , end_time: "01:36:20"},
-	{start_time: "01:38:30" , end_time: "01:38:50"},
-	{start_time: "01:42:00" , end_time: "01:42:20"},
-	{start_time: "01:44:30" , end_time: "01:45:10"},
-	{start_time: "01:46:40" , end_time: "01:47:50"},
-	{start_time: "01:52:00" , end_time: "01:52:40"},
-	{start_time: "01:54:00" , end_time: "01:54:20"},
-	{start_time: "02:01:00" , end_time: "02:02:10"},
-	{start_time: "02:03:00" , end_time: "02:03:40"},
-	{start_time: "02:04:10" , end_time: "02:04:40"},
-	{start_time: "02:12:30" , end_time: "02:14:00"}]
+	# 	@timestamps = [
+	# {start_time: "01:30:30" , end_time: "01:30:50"},
+	# {start_time: "01:35:20" , end_time: "01:35:40"},
+	# {start_time: "01:35:50" , end_time: "01:36:20"},
+	# {start_time: "01:38:30" , end_time: "01:38:50"},
+	# {start_time: "01:42:00" , end_time: "01:42:20"},
+	# {start_time: "01:44:30" , end_time: "01:45:10"},
+	# {start_time: "01:46:40" , end_time: "01:47:50"},
+	# {start_time: "01:52:00" , end_time: "01:52:40"},
+	# {start_time: "01:54:00" , end_time: "01:54:20"},
+	# {start_time: "02:01:00" , end_time: "02:02:10"},
+	# {start_time: "02:03:00" , end_time: "02:03:40"},
+	# {start_time: "02:04:10" , end_time: "02:04:40"},
+	# {start_time: "02:12:30" , end_time: "02:14:00"}]
 
-	@timestamps_27683916  = [{start_time: "00:24:00" , end_time: "00:24:50"},
-	{start_time: "00:33:00" , end_time: "00:33:40"},
-	{start_time: "00:42:00" , end_time: "00:42:44"},
-	{start_time: "00:44:56" , end_time: "00:45:25"},
-	{start_time: "00:47:30" , end_time: "00:48:00"}]
+	# @timestamps_27683916  = [{start_time: "00:24:00" , end_time: "00:24:50"},
+	# {start_time: "00:33:00" , end_time: "00:33:40"},
+	# {start_time: "00:42:00" , end_time: "00:42:44"},
+	# {start_time: "00:44:56" , end_time: "00:45:25"},
+	# {start_time: "00:47:30" , end_time: "00:48:00"}]
+
+	# @timestamps_28869354 = [{start_time: "00:15:20" , end_time: "00:15:50"},
+	# {start_time: "00:28:28" , end_time: "00:28:56"},
+	# {start_time: "00:30:00" , end_time: "00:30:24"},
+	# {start_time: "00:31:40" , end_time: "00:32:04"},
+	# {start_time: "00:34:40" , end_time: "00:35:04"},
+	# {start_time: "00:36:32" , end_time: "00:37:00"},
+	# {start_time: "00:40:40" , end_time: "00:41:00"}]
 
 
+ # note_obj = [{"player_notes"=>
+	#    "almost died but baited them in for 2 kills. only possible because the pudge rotated in.  \\n check enemy hero mana in lane when deciding if to go or not. \\n",
+	#   "category"=>"Mechanical",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:13:45",
+	#   "end_time"=>"00:14:15"},
+	#  {"player_notes"=>"good rotation to help mid get 2 kills.", "category"=>"Game","match_id" =>4, "start_time"=>"00:17:10", "end_time"=>"00:17:40"},
+	#  {"player_notes"=>"underestimated riki damage.", "category"=>"Mechanical","match_id" =>4, "start_time"=>"00:20:48", "end_time"=>"00:21:07"},
+	#  {"player_notes"=>
+	#    "knew there was a riki in the game. \\nif team is pushing tower on the other side of the map, either go there and farm, or farm near a tower, or push with team.",
+	#   "category"=>"Game",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:24:00",
+	#   "end_time"=>"00:24:30"},
+	#  {"player_notes"=>"should have a stout shield on ember so you can jungle.\\ntoo greedy farming and died. knew invoker was in game with sunstrike.",
+	#   "category"=>"Game",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:26:40",
+	#   "end_time"=>"00:27:08"},
+	#  {"player_notes"=>
+	#    "just ate all of invokers meteor, blast combo. need better positioning in fights.\\n should have kept farming, instead of helping the team.\\ndidnt even have a remnant before going.",
+	#   "category"=>"Game",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:28:00",
+	#   "end_time"=>"00:28:30"},
+	#  {"player_notes"=>"should have kept farming, instead of helping the team.\\ndidnt even have a remnant before going.",
+	#   "category"=>"Game",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:37:00",
+	#   "end_time"=>"00:37:30"},
+	#  {"player_notes"=>"should have kept farming, instead of helping the team.\\ndidnt even have a remnant before going.",
+	#   "category"=>"Game",
+	#   "match_id" =>4,
+	#   "start_time"=>"00:39:00",
+	#   "end_time"=>"00:39:40"},
+	#  {"player_notes"=>"left remant too close.  check enemy items. \\n", "category"=>"Mechanical","match_id" =>4, "start_time"=>"00:47:40", "end_time"=>"00:48:10"},
+	#  {"player_notes"=>"if team is not buying wards and u are safelane carry, just buy the wards.", "category"=>"Mechanical","match_id" =>4, "start_time"=>"00:57:00", "end_time"=>"00:57:30"},
+	#  {"player_notes"=>"teamfight", "category"=>"Mechanical","match_id" =>4, "start_time"=>"01:02:00", "end_time"=>"01:03:00"}]
 
-	@timestamps_29875810.each do |clip|
+	note_obj.each do |note|
 
-		split_time = clip[:start_time].split(":")
+		split_time = note['start_time'].split(":")
 		total = ((split_time[0].to_i)*3600)+((split_time[1].to_i)*60)+(split_time[2].to_i)
-		# puts total
-		# puts "-----"
-		# puts (total/4).floor
-		clip[:start_time] = (total/4).floor
-
-
-		split_end_time = clip[:end_time].split(":")
+		note['start_time'] = (total/4).floor
+		split_end_time = note['end_time'].split(":")
 		end_total = ((split_end_time[0].to_i)*3600)+((split_end_time[1].to_i)*60)+(split_end_time[2].to_i)
-		
-		clip[:end_time] = (end_total/4).floor
+		note['end_time'] = (end_total/4).floor
 
 	end
+
+
+	# @timestamps_28869354.each do |clip|
+
+	# 	split_time = clip[:start_time].split(":")
+	# 	total = ((split_time[0].to_i)*3600)+((split_time[1].to_i)*60)+(split_time[2].to_i)
+	# 	# puts total
+	# 	# puts "-----"
+	# 	# puts (total/4).floor
+	# 	clip[:start_time] = (total/4).floor
+
+
+	# 	split_end_time = clip[:end_time].split(":")
+	# 	end_total = ((split_end_time[0].to_i)*3600)+((split_end_time[1].to_i)*60)+(split_end_time[2].to_i)
+		
+	# 	clip[:end_time] = (end_total/4).floor
+
+	# end
 
 
 
 		@twitchoauth = HTTParty.post("https://api.twitch.tv/kraken/oauth2/token" ,
 			:query => { :client_id => "9n260py2zhrn2hmfol9a62cfuguuhs4" ,
-				:client_secret => "kqxdgcamsetrudw3dpspb0d3otm8n3a",
+				:client_secret => Rails.application.secrets.twitch_api_key,
 				:grant_type => "authorization_code",
 				:redirect_uri => "http://localhost:3000/twitch/logged",
 				:code => (params[:code]),
-			})
+		})
 
 		
 		@twitchsig = HTTParty.get("https://api.twitch.tv/api/vods/" + @url + "/access_token?as3=" + @twitchoauth['access_token'])	
@@ -164,26 +292,57 @@ class TwitchController < ApplicationController
 		# @second_part = @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(@timestamps_27812195[1][:start_time].to_i)..(@timestamps_27812195[1][:end_time].to_i)]
 		# @third_part = @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(@timestamps_27812195[2][:start_time].to_i)..(@timestamps_27812195[2][:end_time].to_i)]
 		@finalarr = []
+		@finalarr2 = []
 
-		@timestamps_29875810.each_with_index do |timestamp , index|
-
-			@temp_time =  @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(timestamp[:start_time].to_i)..(timestamp[:end_time].to_i)]
-			@finalarr.push(@temp_time)
+		note_obj.each do |note|
+			@temp_time =  @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(note['start_time'].to_i)..(note['end_time'].to_i)]
+			@finalarr2.push(@temp_time)
 		end
-		@finalarr.flatten!
+
+		# @timestamps_28869354.each_with_index do |timestamp , index|
+
+		# 	@temp_time =  @twitch_e_playlist.split("\n").select{|l| l.start_with? "index"}[(timestamp[:start_time].to_i)..(timestamp[:end_time].to_i)]
+		# 	@finalarr.push(@temp_time)
+		# end
+
+		# @finalarr.each do |array|
+		# 	array.each do |urls|
+		# 		puts urls
+		# 	end
+		# end
+
+		# @finalarr.flatten!
 
 
-		@finalarr.each_with_index do |part,index|
-			@dl_url_test = @prefix + part
 
-			# Make an object in your bucket for your upload
-	    obj = S3_BUCKET.objects["user1/" + index.to_s + ".ts"]
-	    resp = RestClient.get(@dl_url_test)
+		# @finalarr2.each_with_index do |part,index|
+		# 	temparr = []
+		# 	part.each_with_index do |note, nindex|
+		# 		@dl_url_test = @prefix + note
+		# 		# Make an object in your bucket for your upload
+		# 		filename = "user1/match/" + note_match_id + "/notes/clip_" + index.to_s + "/part" + nindex.to_s + ".ts"
+	 #    	obj = S3_BUCKET.objects[filename]
+	 #    	resp = RestClient.get(@dl_url_test)
 
-	    # Upload the file
-	    obj.write(resp.body, acl: :public_read)
+	 #    	# Upload the file
+	 #    	obj.write(resp.body, acl: :public_read)
+		# 		temparr.push(filename)
+		# 		end
+		# 	note_obj[index]['urls'] = temparr
+	 #  end
 
-	  end
+	 #  note_obj.each do |note|
+	 #  	x = note['player_notes'].split("\\n")
+	 #  	Note.create(
+	 #  		match_id: 5,
+	 #  		start_time: note['start_time'],
+		# 		end_time: note['end_time'],
+		# 		category: note['category'],
+		# 		player_notes: x,
+		# 		vid_url: note['urls']
+		# 	) 
+	 #  end
+	  binding.pry
 
 		# @finalarr.each_with_index do |part,index|
 		# 	@dl_url_test = @prefix + part
@@ -193,9 +352,6 @@ class TwitchController < ApplicationController
 		# 	end
 		# end
 
-
-
-		binding.pry
 
 		# open("28401075_final.ts", "wb") do |file|
 			
@@ -363,3 +519,50 @@ end
 #  "index-0000000989-wn54.ts?start_offset=24338668&end_offset=25205723",
 #  "index-0000001019-m6XL.ts?start_offset=0&end_offset=836975"]
 
+
+# 0-7 , 8-15 , 16-22 , 23-29 , 30-37 , 38-43
+# [["index-0000000239-Egq3-muted.ts?start_offset=16765840&end_offset=17604319",
+#   "index-0000000239-Egq3-muted.ts?start_offset=17604320&end_offset=18441107",
+#   "index-0000000239-Egq3-muted.ts?start_offset=18441108&end_offset=19277331",
+#   "index-0000000239-Egq3-muted.ts?start_offset=19277332&end_offset=20114307",
+#   "index-0000000239-Egq3-muted.ts?start_offset=20114308&end_offset=20951471",
+#   "index-0000000239-Egq3-muted.ts?start_offset=20951472&end_offset=21789387",
+#   "index-0000000239-Egq3-muted.ts?start_offset=21789388&end_offset=22626739",
+#   "index-0000000239-Egq3-muted.ts?start_offset=22626740&end_offset=23464843"],
+#  ["index-0000000449-ZVtI-muted.ts?start_offset=5890980&end_offset=6708027",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=6708028&end_offset=7545003",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=7545004&end_offset=8387055",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=8387056&end_offset=9254299",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=9254300&end_offset=10066459",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=10066460&end_offset=10900239",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=10900240&end_offset=11737403",
+#   "index-0000000449-ZVtI-muted.ts?start_offset=11737404&end_offset=12577763"],
+#  ["index-0000000479-heZG-muted.ts?start_offset=0&end_offset=849007",
+#   "index-0000000479-heZG-muted.ts?start_offset=849008&end_offset=1688991",
+#   "index-0000000479-heZG-muted.ts?start_offset=1688992&end_offset=2525215",
+#   "index-0000000479-heZG-muted.ts?start_offset=2525216&end_offset=3366703",
+#   "index-0000000479-heZG-muted.ts?start_offset=3366704&end_offset=4204243",
+#   "index-0000000479-heZG-muted.ts?start_offset=4204244&end_offset=5074683",
+#   "index-0000000479-heZG-muted.ts?start_offset=5074684&end_offset=5893235"],
+#  [],
+#  ["index-0000000539-xmDd.ts?start_offset=8436688&end_offset=9284567",
+#   "index-0000000539-xmDd.ts?start_offset=9284568&end_offset=10106691",
+#   "index-0000000539-xmDd.ts?start_offset=10106692&end_offset=10948367",
+#   "index-0000000539-xmDd.ts?start_offset=10948368&end_offset=11790419",
+#   "index-0000000539-xmDd.ts?start_offset=11790420&end_offset=12639991",
+#   "index-0000000539-xmDd.ts?start_offset=12639992&end_offset=13474147",
+#   "index-0000000539-xmDd.ts?start_offset=13474148&end_offset=14316763"],
+#  ["index-0000000569-ihRx.ts?start_offset=6721752&end_offset=7561735",
+#   "index-0000000569-ihRx.ts?start_offset=7561736&end_offset=8403035",
+#   "index-0000000569-ihRx.ts?start_offset=8403036&end_offset=9245275",
+#   "index-0000000569-ihRx.ts?start_offset=9245276&end_offset=10087891",
+#   "index-0000000569-ihRx.ts?start_offset=10087892&end_offset=10929003",
+#   "index-0000000569-ihRx.ts?start_offset=10929004&end_offset=11771619",
+#   "index-0000000569-ihRx.ts?start_offset=11771620&end_offset=12630591",
+#   "index-0000000569-ihRx.ts?start_offset=12630592&end_offset=13455535"],
+#  ["index-0000000629-M3Lg.ts?start_offset=8418076&end_offset=9268775",
+#   "index-0000000629-M3Lg.ts?start_offset=9268776&end_offset=10103307",
+#   "index-0000000629-M3Lg.ts?start_offset=10103308&end_offset=10987847",
+#   "index-0000000629-M3Lg.ts?start_offset=10987848&end_offset=11806775",
+#   "index-0000000629-M3Lg.ts?start_offset=11806776&end_offset=12630215",
+#   "index-0000000629-M3Lg.ts?start_offset=12630216&end_offset=13471515"]]

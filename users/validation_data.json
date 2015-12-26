@@ -1,0 +1,30 @@
+{
+  "dataVersion" : 1,
+  "independentSegments" : false,
+  "parsedSegmentsCount" : 97,
+  "hasDiscSequenceTag" : true,
+  "gzipEncoded" : false,
+  "playlistKind" : "media",
+  "measuredMaxBitrate" : 0,
+  "messages" : [
+    {
+      "errorParserCode" : -12268,
+      "errorComment" : "#EXT-X-ALLOW-CACHE has been deprecated",
+      "errorStatusCode" : 0,
+      "errorParserLine" : "#EXT-X-ALLOW-CACHE:YES"
+    },
+    {
+      "errorStatusCode" : -1,
+      "errorComment" : "Illegal MIME type",
+      "errorDetail" : "MIME type: (null)"
+    }
+  ],
+  "url" : "test2.m3u8",
+  "validatorTimestamp" : "2015-12-25T14:38:07-05:00",
+  "validatorVersion" : "1.1(151117)",
+  "dataID" : 0,
+  "processedSegmentsCount" : 0,
+  "playlistTargetDuration" : 4,
+  "hasEndTag" : true,
+  "measuredMeanBitrate" : 0
+}

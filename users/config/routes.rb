@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/background' => 'test#background'
 
   get '/twitch_test' => 'test#flash'
+  post '/twitch/editform' => 'twitch#editform'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

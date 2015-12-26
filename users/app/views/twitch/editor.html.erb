@@ -40,7 +40,7 @@
 		<div id="notes_main_editor">
 			
 			<div id="notes_editor_video">
-				<iframe id="notes_editor_video_iframe" src="http://player.twitch.tv/?video=v28072675&autoplay=false"
+				<iframe id="notes_editor_video_iframe" src="http://player.twitch.tv/?video=v31227515&autoplay=false"
 				allowfullscreen="allowfullscreen" 
 				frameborder="0" 
 				scrolling="no" 
@@ -58,8 +58,22 @@
 	
 	<div id="notes_create_sidebar">
 
-		<div class="ui relaxed celled list">
-			<div class="item">
+
+		<div id="notes_sidebar_changes">
+			<button id="notes_sidebar_add" class="ui primary button">
+				Add Note
+			</button>		
+			<button id="notes_sidebar_save" class="ui button">
+				Save
+			</button>
+		</div>
+		
+
+		<div id="notes_sidebar_notes_list">
+			<span> List of Notes </span> <button id="twitch_edit_notes_show_button">Show</button>			
+			<div id="notes_sidebar_list_dropdown">
+			<div class="ui relaxed celled list">
+			<!-- <div class="item">
 				<img class="ui image notes_type_image" src="/assets/icons/mech.png">
 				<div class="content">
 					<a class="header">28:28 - 28:56</a>
@@ -127,53 +141,32 @@
 						<li>underestimated sven damage.</li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</div>
-
-		<div id="notes_sidebar_changes">
-			<button id="notes_sidebar_add" class="ui primary button">
-				Add Note
-			</button>		
-			<button id="notes_sidebar_save" class="ui button">
-				Save
-			</button>
-		</div>
-		
-
-		<div id="notes_sidebar_notes_list">
-			<span> List of Notes </span>
-			<div id="notes_sidebar_list_dropdown" class="ui selection dropdown">
-				<input type="hidden" name="notes">
-				<i class="dropdown icon"></i>
-				<div class="default text">Notes</div>
-				<div class="menu">
-					<div class="item" data-value="1">Male</div>
-					<div class="item" data-value="0">Female</div>
-				</div>
-			</div>
-		</div>
+	</div>
+</div>
 		
 
 		<div id="notes_sidebar_category">
-			<span> Type of Error </span>			
+			<span> Type of Error </span> 
 			<div class="ui form">
 				<div id="notes_sidebar_category_boxes" class="inline fields">
 					<div class="field">
 						<div class="ui radio checkbox">
-							<input type="radio" name="frequency">
+							<input type="radio" name="frequency" value="Mechanical">
 							<label>Mechanical</label>
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui radio checkbox">
-							<input type="radio" name="frequency">
-							<label>Game sense</label>
+							<input type="radio" name="frequency" value="Game">
+							<label>Game</label>
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui radio checkbox">
-							<input type="radio" name="frequency">
-							<label>Personality</label>
+							<input type="radio" name="frequency" value="Mindset">
+							<label>Mindset</label>
 						</div>
 					</div>
 				</div>
@@ -194,14 +187,14 @@
 			</div>
 
 			<div id="notes_end_input" class="ui input">
-				<input type="text" placeholder="End...">
+				<input id="notes_end_input_yea" type="text" placeholder="End...">
 			</div>
 		</div>
 
 		<div id="notes_sidebar_text">
 			<span id="notes_sidebar_text_label">Enter Note</span>
 			<div class="ui input">
-				<textarea rows="5" cols="40"></textarea>
+				<textarea id="twitch_edit_notes_textarea" rows="5" cols="40"></textarea>
 			</div>
 		</div>
 
@@ -210,6 +203,15 @@
 
 
 </div>
+<button id="twitch_edit_form_button">yea yea</button>
+
+<form method="POST" action="/twitch/editform">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input id="obj" type="hidden" name="obj">
+	<input id="twitch_url" type="hidden" name="twitch_url">
+	<input id="match_id" name="match_id">
+	<button >submit</button>
+</form>
 
 <!--<%= Rails.application.secrets.twitch_api_key %>
 
@@ -222,6 +224,54 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 
 
 <script type="text/javascript">
+	var postarray = [];
+	var main_list = $('.ui.relaxed.celled.list');
+
+	$('#notes_sidebar_add').click(function(){
+		var newobj = {};
+		newobj.player_notes = $('#twitch_edit_notes_textarea').val();
+		newobj.category = $("input[name=frequency]:checked").val();
+		newobj.start_time = $('#notes_start_input_yea').val();
+		newobj.end_time = $('#notes_end_input_yea').val();
+		postarray.push(newobj);
+
+    var main_content = $('<div/>')
+    .addClass('item')
+    .appendTo(main_list);
+
+    var img = $('<img/>')
+    .addClass('ui image notes_type_image')
+    .attr('src', '/assets/icons/personality.png')
+    .appendTo(main_content);
+
+    var content = $('<div/>')
+    .addClass('content')
+    .appendTo(main_content);
+    
+    var aaa = $('<a/>')
+    .addClass('header')
+    .text(newobj.start_time + " - " + newobj.end_time)
+    .appendTo(content);
+
+    var ul = $('<ul/>')		
+    .addClass('ui list')
+    .appendTo(content);
+
+    var li = $('<li/>')
+		.text(newobj.player_notes)
+    .appendTo(ul);
+
+	});
+
+
+
+	obj = [{start_time: "00:15:20" , end_time: "00:15:50"},
+	{start_time: "00:28:28" , end_time: "00:28:56"},
+	{start_time: "00:30:00" , end_time: "00:30:24"},
+	{start_time: "00:31:40" , end_time: "00:32:04"},
+	{start_time: "00:34:40" , end_time: "00:35:04"},
+	{start_time: "00:36:32" , end_time: "00:37:00"},
+	{start_time: "00:40:40" , end_time: "00:41:00"}]
 
 		$('.ui.sticky')
 		  .sticky({
@@ -231,6 +281,7 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 
 		$('#notes_twitch_icon').click(function(){
 			console.log("clicked");
+
 			$('#notes_main_editor').hide();
 			$('#notes_main_twitch_vid_list_container').show();
 		});
@@ -242,7 +293,7 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 		});
 
 		$(".twitch_vid_list_container").click(function(){ 
-			
+			$('#twitch_url').val(JSON.stringify($(this).data()));
 			var iframesrc = $(this).data("value");
 			$("#notes_editor_video_iframe").attr('src', "http://player.twitch.tv/?video=" + iframesrc + "&autoplay=false")
 			$('#notes_main_twitch_vid_list_container').hide();
@@ -252,6 +303,60 @@ Filter by price interval: <b>€ 10</b> <input id="ex2" type="text" class="span2
 
 		$("#notes_sidebar_add").click(function(){
 			$('#notes_start_input_yea').val('');
+		});
+
+		$('#twitch_edit_form_button').click(function(){
+				$('#obj').val(JSON.stringify(postarray));
+				$('form').submit();
 		})
+
+		$('#twitch_edit_notes_show_button').click(function(){
+				if ($('#notes_sidebar_list_dropdown').is(":visible")){
+					$('#notes_sidebar_category').css('margin-top',3);
+					$('#notes_sidebar_list_dropdown').hide();
+					$('#twitch_edit_notes_show_button').text("Show");
+				} else {
+					$('#notes_sidebar_category').css('margin-top',33);
+					$('#notes_sidebar_list_dropdown').show();
+					$('#twitch_edit_notes_show_button').text("Hide");
+				}
+		})
+
 	
 </script>
+
+
+<!-- 
+	 [{"player_notes"=>
+	   "almost died but baited them in for 2 kills. only possible because the pudge rotated in.  \\n \ncheck enemy hero mana in lane when deciding if to go or not. \\n\n",
+	  "category"=>"Mechanical",
+	  "start_time"=>"13:45",
+	  "end_time"=>"14:15"},
+	 {"player_notes"=>"good rotation to help mid get 2 kills.", "category"=>"Game", "start_time"=>"17:10", "end_time"=>"17:40"},
+	 {"player_notes"=>"underestimated riki damage.", "category"=>"Mechanical", "start_time"=>"20:48", "end_time"=>"21:07"},
+	 {"player_notes"=>
+	   "knew there was a riki in the game. \\n\nif team is pushing tower on the other side of the map, either go there and farm, or farm near a tower, or push with team.",
+	  "category"=>"Game",
+	  "start_time"=>"24:00",
+	  "end_time"=>"24:30"},
+	 {"player_notes"=>"should have a stout shield on ember so you can jungle.\\n\ntoo greedy farming and died. knew invoker was in game with sunstrike.",
+	  "category"=>"Game",
+	  "start_time"=>"26:40",
+	  "end_time"=>"27:08"},
+	 {"player_notes"=>
+	   "just ate all of invokers meteor, blast combo. need better positioning in fights. \\n\nshould have kept farming, instead of helping the team.\\n\ndidnt even have a remnant before going.\\n",
+	  "category"=>"Game",
+	  "start_time"=>"28:00",
+	  "end_time"=>"28:30"},
+	 {"player_notes"=>"should have kept farming, instead of helping the team.\\n\ndidnt even have a remnant before going.\\n",
+	  "category"=>"Game",
+	  "start_time"=>"37:00",
+	  "end_time"=>"37:30"},
+	 {"player_notes"=>"should have kept farming, instead of helping the team.\\n\ndidnt even have a remnant before going.\\n\n",
+	  "category"=>"Game",
+	  "start_time"=>"39:00",
+	  "end_time"=>"39:40"},
+	 {"player_notes"=>"left remant too close.  check enemy items. \\n", "category"=>"Mechanical", "start_time"=>"47:40", "end_time"=>"48:10"},
+	 {"player_notes"=>"if team is not buying wards and u are safelane carry, just buy the wards.", "category"=>"Mechanical", "start_time"=>"57:00", "end_time"=>"57:30"},
+	 {"player_notes"=>"teamfight", "category"=>"Mechanical", "start_time"=>"01:02:00", "end_time"=>"01:03:00"}]
+ -->

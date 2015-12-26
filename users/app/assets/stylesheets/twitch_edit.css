@@ -1,19 +1,22 @@
 #notes_main_container{
 	display: inline-block;
 
-
 }
 
 #notes_create_sidebar{
 	margin-left: 910px;
 	display: inline-block;
 	width: 250px;
-	height: auto;
+	height: 600px;
+	overflow: scroll;
 	border: 2px solid red;
 	background-color: #F8F8F8;
 	font-size: .9em;
 }
 
+#notes_sidebar_add , #notes_sidebar_save {
+	font-size: .7rem;
+}
 
 #notes_main_container div.ui.rail{
 	margin-top: 72px;
@@ -57,39 +60,64 @@
 
 }
 #notes_sidebar_changes{
-	height: 42px;
+	height: 30px;
 }
 
 #notes_sidebar_notes_list{
 	margin-top: 15px;
-	height: 80px;
-	border-bottom: 1px solid #e2e2e2;
+	height: 40px;
+	width: 246px;
+ 	cursor: pointer;
+  word-wrap: break-word;
+  line-height: 1em;
+  white-space: normal;
+  outline: 0;
+  -webkit-transform: rotateZ(0deg);
+  transform: rotateZ(0deg);
+  min-width: 14em;
+  min-height: 2.7142em;
+  background: #ffffff;
+  display: inline-block;
+  padding: 0.78571429em 2.6em 0.78571429em 1em;
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: none;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0;
+  -webkit-transition: box-shadow 0.1s ease, width 0.1s ease;
+  transition: box-shadow 0.1s ease, width 0.1s ease;
 }
 #notes_sidebar_notes_list span{
 	margin-top: 15px;
 	margin-left: 40px;
 }
 #notes_sidebar_category{
-	margin-top: 10px;
-	height: 60px;
+	margin-top: 3px;
+	height: 50px;
 	border-bottom: 1px solid #e2e2e2;
 }
+#notes_sidebar_category .ui.form{
+	margin-top: -10px;
+}
+.ui.radio.checkbox label{
+	font-size: .8em;
+}
 #notes_sidebar_category span{
-	margin-left: 40px;
+	margin-left: 33%;
 }
 
 #notes_sidebar_add{
-	margin-top: 6px;
-	margin-left: 40px;
-	width: 120px;
+	margin-top: 10px;
+	margin-left: 12%;
+	width: 80px;
 }
 #notes_sidebar_save{
 	margin-left: 30px;
 	width: 80px;
 }
 #notes_sidebar_list_dropdown{
+	display: none;
 	margin-top: 5px;
-	margin-left: 40px;
+	margin-left: -10px;
 	width: 240px;
 }
 #notes_sidebar_category_boxes{
@@ -97,13 +125,13 @@
 	margin-left: 10px;
 }
 #notes_sidebar_time_label{
-	margin-top: 10px;
+	margin-top: 5px;
 }
 #notes_sidebar_time_label span{
-	margin-left: 40px;
+	margin-left: 40%;
 }
 #notes_sidebar_time{
-	margin-top: 5px;
+	margin-top: -5px;
 	border-bottom: 1px solid #e2e2e2;
 	height: 65px;
 }
@@ -114,25 +142,29 @@
 	margin-left: 41px;
 }
 #notes_end_label{
-	margin-left: 110px;
+	margin-left: 95px;
 	height: 10px;
 }
 
-#noteui image notes_type_images_start_input{
-	margin-left: 40px;
+img.ui.image.notes_type_image{
+	width: 22px;
+	height: 22px;
+}
+#notes_start_input{
+	margin-left: 10px;
 }
 #notes_end_input{
-	margin-left: 40px;
+	margin-left: 20px;
 }
 #notes_sidebar_text_label{
 	margin-left: 40px;
 	margin-top: 40px;
 }
 #notes_sidebar_text .ui.input{
-	margin-left: 40px;
+	margin-left: 12px;
 	margin-top: 20px;
-	width: 80%;
-	height: 150px;
+	width: 90%;
+	height: 250px;
 }
 .twitch_vid_list_thumb{
 	width: 140px;
@@ -155,4 +187,7 @@
 .ui.relaxed.celled.list li{
 	width: 190px;
 	margin-left: 10px;
+}
+#twitch_edit_notes_show_button{
+
 }
