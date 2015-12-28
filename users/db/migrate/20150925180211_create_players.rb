@@ -1,10 +1,10 @@
-class CreatePlayers < ActiveRecord::Migration
+	class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
 
 
 
-   		t.integer :account_id, :limit => 8
+   	t.integer :account_id, :limit => 8
 		t.integer :player_slot
 		t.integer :hero_id
 		t.integer :item_0

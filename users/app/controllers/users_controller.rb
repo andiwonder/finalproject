@@ -44,6 +44,7 @@ class UsersController < ApplicationController
         password: params[:password],
         skype_id: params[:skype_id],
         steam_id: params[:steam_id],
+        steam32: params[:steam_id].to_i - 76561197960265728,
         solo_mmr: params[:solo_mmr],
         party_mmr: params[:party_mmr]
         )

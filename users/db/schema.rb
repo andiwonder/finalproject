@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222193620) do
+ActiveRecord::Schema.define(version: 20151228172630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,12 +57,9 @@ ActiveRecord::Schema.define(version: 20151222193620) do
     t.integer  "negative_votes"
     t.integer  "game_mode"
     t.integer  "engine"
-    t.integer  "user_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
-
-  add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "start_time"
@@ -129,8 +126,10 @@ ActiveRecord::Schema.define(version: 20151222193620) do
     t.integer  "party_mmr"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "steam32"
   end
 
   add_foreign_key "notes", "matches"
   add_foreign_key "players", "matches"
+  add_foreign_key "players", "users"
 end
