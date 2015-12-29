@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       @last_game = @current_user.matches.order('id desc').first
       @player_summary = HTTParty.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamids=' + @current_user.steam_id )
       @recent_game = HTTParty.get("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=" + @current_user.steam_id + "&format=json")
+      binding.pry
       dota = []
       @recent_game['response']['games'].each do |game|
         if game['appid']== 570
@@ -118,7 +119,7 @@ class UsersController < ApplicationController
       end
 
       @recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id="+ @current_user.steam_id)
-      @steam_32_id = @current_user.steam_id.to_i - 76561197960265728
+      @steam_32_id = @current_user.steam32
       @games = @recent_matches['result']['matches']
       @mygames_list = []
       @myheroes_list = []

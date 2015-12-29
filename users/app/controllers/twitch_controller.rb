@@ -81,17 +81,26 @@ class TwitchController < ApplicationController
 
 	def notes
 		# @current_user = User.find(session[:user_id])
-		@swap = User.find(1)
+		user = User.find(session[:user_id])
 		@match_history_icon = []
-		@swap.matches.each do |match|
+		user.matches.each do |match|
+			player = user.players.find_by(match_id: match.id)		
 			my_hash = {
-			hero: match['hero_id']
+			hero: player.hero_id
 			# slot: match['player_slot']
 			}
-			tempmatch = Match.find(match['match_id'])
-			winner =  tempmatch['radiant_win']
-			my_hash[:unformat_time] = tempmatch['start_time']
-			my_hash[:time] = Time.at(tempmatch['start_time']).strftime("%F %I:%M %p")
+			# binding.pry
+			# tempmatch = Match.find(match['match_id'])
+			winner =  match['radiant_win']
+			slot = player['player_slot']
+			if (match['radiant_win'] == true) && (slot == 0 || slot == 1 || slot == 2 || slot == 3 || slot == 4)
+				win = true
+			else
+				win = false
+			end
+			my_hash[:win] = win
+			my_hash[:unformat_time] = match['start_time']
+			my_hash[:time] = Time.at(match['start_time']).strftime("%F %I:%M %p")
 			@match_history_icon.push(my_hash)
 		end
 		# @recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id="+ @current_user.steam_id)

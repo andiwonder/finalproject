@@ -3,7 +3,7 @@ class CreateMatches < ActiveRecord::Migration
     create_table :matches do |t|
     	
 
-    	t.boolean :radiant_win
+    t.boolean :radiant_win
 		t.integer :duration
 		t.integer :start_time, :limit => 8
 		t.integer :match_id, :limit => 8 

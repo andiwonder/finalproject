@@ -13,6 +13,7 @@ class TestController < ApplicationController
 		myheroes= []
 		myroles = []
 		@players = Player.where(user_id: 1)
+		# binding.pry
 		@last_match = Match.find(1)
 		@players.each do |player|
 			myheroes.push(player['hero_id'])
@@ -112,9 +113,9 @@ class TestController < ApplicationController
 
 
     def test
-
+    	dupparr = []
     	actual_user = User.find(session[:user_id])
-    	@recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id=76561197981778464")
+    	@recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id=" + actual_user.steam_id)
     	# @steam_32_id = @current_user.steam_id.to_i - 76561197960265728
     	# steam_32_id = 21512736
     	@recent_matches['result']['matches'].each do |game|
@@ -122,18 +123,19 @@ class TestController < ApplicationController
     		@match_in_arr = game['match_id'].to_s
     		@match = HTTParty.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' + @match_in_arr + '&key=73626CB2E22E10D9F4AB0D7ECBAF600B')
 
-    		if Match.where(match_id: @match['result']['match_id']).present?
-    			binding.pry
-    			x = Match.find_by(match_id: @match['result']['match_id']).players.where(account_id: actual_user[:steam32])
+    		if Match.find_by(match_seq_num: @match['result']['match_seq_num']) != nil
+    			x = Match.find_by(match_seq_num: @match['result']['match_seq_num']).players.find_by(account_id: actual_user[:steam32])
+    			# binding.pry
+    			dupparr.push(x.match_id.to_i)
     			# @players = Player.where(user_id: actual_user[:id])
     			x.update(user_id: actual_user[:id].to_i)
     			# Match.find(1).players.where(user_id: 1)
-    			puts "this match exists"
+    			puts "this match exists and player has been updated"
     			next
 
     		else 
 
-    			Match.create(
+    			current_match = Match.create(
     				radiant_win: @match['result']['radiant_win'],
     				duration: @match['result']['duration'],
     				start_time: @match['result']['start_time'],
@@ -170,13 +172,15 @@ class TestController < ApplicationController
 						end
 
 
-						if @player['account_id'] == actual_user[:steam_32]
+						if @player['account_id'] == actual_user[:steam32]
+							# binding.pry
 							puts "found you!"
 							@my_id = actual_user[:id]
 						else
 							@my_id = nil
 						end
 
+						# binding.pry
 						@current_player = Player.create(
 
 							account_id: @player['account_id'].to_i,
@@ -205,13 +209,16 @@ class TestController < ApplicationController
 							levels: @mylvl ,
 							abilities: @myabl ,
 							time: @mytime ,
-							match_id: @current_match['id'],
+							match_id: current_match.id,
 							user_id: @my_id
 							)
 					end
 				end
 			end
-		render json: @recent_matches
+		# respond_to do |format|
+  #     format.html
+  #     format.json {render json: dupparr}
+  #   end
 		end
 
 
