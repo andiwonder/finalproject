@@ -11,10 +11,11 @@
   color: white;
 }
 #d3_minimap_chart{
-	height: 600px;
+	height: 440px;
 	width: 1000px;
 	border: 2px solid red;
 	overflow: scroll;
+  margin-left: 12%;
 }
 
 .grid .tick {

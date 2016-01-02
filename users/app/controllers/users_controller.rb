@@ -62,12 +62,16 @@ class UsersController < ApplicationController
       @last_game = @current_user.matches.order('id desc').first
       @player_summary = HTTParty.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamids=' + @current_user.steam_id )
       @recent_game = HTTParty.get("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=" + @current_user.steam_id + "&format=json")
-      binding.pry
+      # binding.pry
       dota = []
-      @recent_game['response']['games'].each do |game|
-        if game['appid']== 570
-          dota.push(game)
-        end
+      begin
+        @recent_game['response']['games'].each do |game|
+          if game['appid']== 570
+            dota.push(game)
+          end
+        end   
+      rescue 
+        
       end
 
 
@@ -168,11 +172,36 @@ class UsersController < ApplicationController
         @top_3_list.push(top_3_heroes)
       end
 
-
-      respond_to do |format|
-        format.html
-        format.json {render json: @last_game}
+          # @current_user = User.find(session[:user_id])
+    user = User.find(session[:user_id])
+    @match_history_icon = []
+    user.matches.each do |match|
+      player = user.players.find_by(match_id: match.id)   
+      my_hash = {
+      hero: player.hero_id
+      # slot: match['player_slot']
+      }
+      # binding.pry
+      # tempmatch = Match.find(match['match_id'])
+      winner =  match['radiant_win']
+      slot = player['player_slot']
+      if (match['radiant_win'] == true) && (slot == 0 || slot == 1 || slot == 2 || slot == 3 || slot == 4)
+        win = true
+      else
+        win = false
       end
+      my_hash[:win] = win
+      my_hash[:unformat_time] = match['start_time']
+      my_hash[:time] = Time.at(match['start_time']).strftime("%F %I:%M %p")
+      @match_history_icon.push(my_hash)
+    end
+    # @recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id="+ @current_user.steam_id)
+
+    respond_to do |format|
+        format.html
+        format.json {render json: @match_history_icon}
+    end
+
     else
       redirect_to user_path(actual_user)
     end

@@ -225,6 +225,11 @@
       return memo;
   },{});
 
+  var final_result = _.map(map_result, function (item) {
+      x = result_temp[item.Month]
+      item.game_of_day = x.indexOf(item.hero_id+ " " + item.hour + " " +item.minute) + 1;
+  });
+
   
   // var newobj = {}; 
   // var result_temp2 = _.reduce(map_result, function (memo, item) {
@@ -264,9 +269,9 @@
 
   // add margins to svg
 
-  var margin = {top: 30, right: 20, bottom: 80, left: 50},
-      width = 1300 - margin.left - margin.right,
-      height = 600 - margin.top - margin.bottom;
+  var margin = {top: 30, right: 20, bottom: 50, left: 50},
+      width = 1700 - margin.left - margin.right,
+      height = 450 - margin.top - margin.bottom;
 
   // Parse the date / time
   var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -291,7 +296,7 @@
         .scale(x)
          .orient("bottom")
          .ticks(16)
-  }
+  }1
 
   function make_y_axis() {        
     return d3.svg.axis()
@@ -327,6 +332,7 @@
 
   var svg = d3.select("#d3_minimap_chart")
     .append("svg")
+      .attr("fill","red")
       .attr("id","my_svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -334,6 +340,25 @@
     .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
+
+
+  var images = svg.selectAll("img").data([0]);
+    
+    images.enter()
+    .append("svg:image")
+    .attr("class","d3_bg")
+    .attr("xlink:href", "/assets/noise.png")
+    .attr("x", -350)  
+    .attr("y", -30)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom);
+
+// $('.d3_bg').css("opacity",".8")
+
+  // svg.append("rect")
+  //   .attr("width", "100%")
+  //   .attr("height", "100%")
+  //   .attr("fill", "rgba(27,28,29, 0.6)");
 
   svg.append("text")      // text label for the x axis
     .attr("x", 265 )
@@ -360,21 +385,35 @@
         .attr("class", "y axis")
         .call(yAxis);
 
-    svg.append("g")         
-    .attr("class", "grid")
-    .attr("transform", "translate(0," + height + ")")
-    .call(make_x_axis()
-        .tickSize(-height, 0, 0)
-        .tickFormat("")
-    )
+    // svg.append("g")         
+    // .attr("class", "grid")
+    // .attr("transform", "translate(0," + height + ")")
+    // .call(make_x_axis()
+    //     .tickSize(-height, 0, 0)
+    //     .tickFormat("")
+    // )
 
-    svg.append("g")         
-    .attr("class", "grid")
-    .call(make_y_axis()
-        .tickSize(-width, 0, 0)
-        .tickFormat("")
-    )
+    // svg.append("g")         
+    // .attr("class", "grid")
+    // .call(make_y_axis()
+    //     .tickSize(-width, 0, 0)
+    //     .tickFormat("")
+    // )
 
+var rectangle = svg.selectAll("rect").
+                data(map_result);
+  
+    rectangle.enter()
+    .append("svg:rect")              
+              .attr("x", function(d,i){
+                return (d.day * 60);
+              })
+              .attr("y", function(d,i){
+                return (d.game_of_day * -30) + 330;
+              })
+              .attr("fill","rgba(181, 204, 24, 0.6)")
+              .attr("width", 28)
+              .attr("height", 28);
 
 
 
@@ -389,20 +428,13 @@
         return (d.day * 60);
       })
     .attr("y", function (d,i) {
-        if (d.minute <= 10){
-          return d.hour + (d.minute * 7) ;
-        } else if (d.minute <= 20 && d.minute >= 10) {
-          return d.hour + (d.minute * 7) + 8 ;
-        } else if (d.minute <= 30 && d.minute >= 20) {
-          return d.hour + (d.minute * 7) + 16 ;
-        } else if (d.minute <= 40 && d.minute >= 30) {
-          return d.hour + (d.minute * 7) + 24 ;
-        } else if (d.minute <= 50 && d.minute >= 40) {
-          return d.hour + (d.minute * 7) + 32 ;
-        } 
+        return (d.game_of_day * -30) + 330;
       })
+    .attr("stroke","orange")
     .attr("width", "28")
     .attr("height", "28");
+
+
 
 
     // var svg = d3.select("body")
