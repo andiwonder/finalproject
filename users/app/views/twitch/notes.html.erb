@@ -269,9 +269,9 @@
 
   // add margins to svg
 
-  var margin = {top: 30, right: 20, bottom: 50, left: 50},
+  var margin = {top: 30, right: 20, bottom: 30, left: 10},
       width = 1700 - margin.left - margin.right,
-      height = 450 - margin.top - margin.bottom;
+      height = 350 ;
 
   // Parse the date / time
   var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -342,16 +342,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
 
-  var images = svg.selectAll("img").data([0]);
-    
-    images.enter()
-    .append("svg:image")
-    .attr("class","d3_bg")
-    .attr("xlink:href", "/assets/noise.png")
-    .attr("x", -350)  
-    .attr("y", -30)
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+
 
 // $('.d3_bg').css("opacity",".8")
 
@@ -381,9 +372,9 @@
       //   .attr("transform", "rotate(-90)" );
 
     // Add the Y Axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
+    // svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(yAxis);
 
     // svg.append("g")         
     // .attr("class", "grid")
@@ -406,7 +397,7 @@ var rectangle = svg.selectAll("rect").
     rectangle.enter()
     .append("svg:rect")              
               .attr("x", function(d,i){
-                return (d.day * 60);
+                return (d.day * 60) - 20;
               })
               .attr("y", function(d,i){
                 return (d.game_of_day * -30) + 330;
@@ -425,7 +416,7 @@ var rectangle = svg.selectAll("rect").
           return "/assets/icons/minimap_hero_icon/" + myheroes.getKeyByValue(d.hero_id) + "_icon.png"
       })
     .attr("x", function (d,i) {
-        return (d.day * 60);
+        return (d.day * 60) - 20;
       })
     .attr("y", function (d,i) {
         return (d.game_of_day * -30) + 330;

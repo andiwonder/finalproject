@@ -1,64 +1,79 @@
-<!DOCTYPE html>
-<html>
+<div id="background-wrapper">
+  <!--all your content-->
 
-  <head>
-  <link rel="stylesheet" type="text/css" href="/assets/profile/main-page.css">
+<!--   <div class="matches_menu ui secondary  menu">
+    <a id="matches_submenu_1" class="active item">
+      Profile
+    </a>
+    <a id="matches_submenu_2" class="matches_submenu item" href="/chin">
+      Matches
+    </a>
+    <a id="matches_submenu_3" class="item" href="/selection">
+      Heros
+    </a>
+    <a id="matches_submenu_4" class="item">
+      Notes
+    </a>
+    <div class="right menu">
+      <div class="ui search">
+        <input class="prompt" type="text" placeholder="Common passwords...">
+        <div class="results"></div>
+      </div>
+      <a id="matches_submenu_5" class="ui item">
+        Logout
+      </a>
+    </div>
+  </div> -->
 
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway:100">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-  <script src="/assets/profile/d3.v3.min.js"></script>
-  <script src="/assets/profile/RadarChart.js"></script>
-  <script type="text/javascript" src="/assets/profile/script.js"></script>
-  <script type="text/javascript" src="/assets/profile/script2.js"></script>
-  </head>
-  
-  <body>
-
-  <img class="nav_bg" src="/assets/dotabg.jpg">
-  <nav role='navigation'>
-    
-    <ul>
-
-      <li><a href="#"><span>Learn</span></a></li>
-      <li class="current"><a href="#"><span>Find</span></a></li>
-      <li><a href="#"><span>Wait</span></a></li>
-      <li><a href="#"><span>About Me</span></a></li>
-    </ul>
-  </nav>
-
-
-
-
-  <div id="background-wrapper">
-<!--all your content-->
-
-
-  <div id="main_display">
-  
-  <div id="sub_links">
-    <a href="/users/:id">PROFILE  /</a>    
-    <a href="/chin/<%= @last_game['match_id']%>">Matches  /</a>
-    <a href="/background">TROPHIES  /</a>   
-    <a href="/selection">HEROES</a>
+  <div id="user_match_display_menu" class="ui pointing menu">
+    <a class="active item">
+      Home
+    </a>
+    <a class="item">
+      Messages
+    </a>
+    <a class="item">
+      Friends
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui transparent icon input">
+          <input type="text" placeholder="Search...">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
-<div id="d3_minimap_chart">
-  
-
-</div>
-
-
-<%= content_tag :div, class: "temp_information", data: {temp: @match_history_icon} do %>
-<% end %>
-
-
-
-  <div id="profile_display">
+  <div class="ui statistics" id="profile_display">
     <img height='100%' src="<%= @profile_info_display['avatar']%>">
     <h3><%=@profile_info_display['name']%></h3>
+    <div class="statistic">
+      <div class="value">
+        22
+      </div>
+      <div class="label">
+        Faves
+      </div>
+    </div>
+    <div class="statistic">
+      <div class="value">
+        31,200
+      </div>
+      <div class="label">
+        Views
+      </div>
+    </div>
+    <div class="statistic">
+      <div class="value">
+        22
+      </div>
+      <div class="label">
+        Members
+      </div>
+    </div>
   </div>
   
-
   <div id="profile_stats">
 
     <div id="left_side">
@@ -66,7 +81,6 @@
         <% @top_3_list.each do |hero| %>
         <img class="top_hero" src="<%= hero['hero_pic']%>" >
         <% end %>
-        <img id="top_hero_bg" src="/assets/fav_hero_display.png">
       </div>
       <div id="user_info">
         <div id="chart"></div>
@@ -87,11 +101,6 @@
     </div>
     <div id="right_side">
         
-      <div id="sub_sub_links">
-        <a href="#">RECENT GAMES /  </a>
-        <a href="#">ACTIVITY FEED</a>
-        
-      </div>
       <div id="sub_sub_links_display">
         
 
@@ -121,11 +130,24 @@
 
 
     </div>
-
   </div>
 
 
+  <div id="user_match_display_menu_option" class="ui tabular menu">
+    <a class="item">
+      Bio
+    </a>
+    <a class="item">
+      Photos
+    </a>
   </div>
+
+  <div id="d3_minimap_chart">
+  </div>
+
+
+
+</div>
 
   <button id="main_btn"><%= @friend_summaries_list.length %> Friends</button>
 
@@ -179,19 +201,13 @@
       
     </div>
       
-</div>
-
-
-<!-- <object bgcolor="#000000" data="http://www.twitch.tv/swflibs/TwitchPlayer.swf" height="378" id="clip_embed_player_flash" type="application/x-shockwave-flash" width="620"><param name="movie" value="http://www.twitch.tv/swflibs/TwitchPlayer.swf" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="allowFullScreen" value="true" /><param name="flashvars" value="channel=lqt1&amp;auto_play=false&amp;start_volume=25&amp;videoId=v17437000&amp;device_id=7664f23ffd3673bc" /></object><br /><a href="http://www.twitch.tv/lqt1" style="padding:2px 0px 4px; display:block; width: 320px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from lqt1 on Twitch</a>
- -->
+  </div>
 
 
 
 
-</div>
-
-
-</body>
+<%= content_tag :div, class: "temp_information", data: {temp: @match_history_icon} do %>
+<% end %>
 
 <script type="text/javascript">
 
@@ -425,9 +441,9 @@
 
   // add margins to svg
 
-  var margin = {top: 30, right: 20, bottom: 50, left: 50},
+  var margin = {top: 30, right: 20, bottom: 30, left: 10},
       width = 1700 - margin.left - margin.right,
-      height = 450 - margin.top - margin.bottom;
+      height = 320 ;
 
   // Parse the date / time
   var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -498,16 +514,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
 
-  var images = svg.selectAll("img").data([0]);
-    
-    images.enter()
-    .append("svg:image")
-    .attr("class","d3_bg")
-    .attr("xlink:href", "/assets/noise.png")
-    .attr("x", -350)  
-    .attr("y", -30)
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+
 
 // $('.d3_bg').css("opacity",".8")
 
@@ -537,9 +544,9 @@
       //   .attr("transform", "rotate(-90)" );
 
     // Add the Y Axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
+    // svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(yAxis);
 
     // svg.append("g")         
     // .attr("class", "grid")
@@ -562,7 +569,7 @@ var rectangle = svg.selectAll("rect").
     rectangle.enter()
     .append("svg:rect")              
               .attr("x", function(d,i){
-                return (d.day * 60);
+                return (d.day * 60) - 20;
               })
               .attr("y", function(d,i){
                 return (d.game_of_day * -30) + 330;
@@ -581,7 +588,7 @@ var rectangle = svg.selectAll("rect").
           return "/assets/icons/minimap_hero_icon/" + myheroes.getKeyByValue(d.hero_id) + "_icon.png"
       })
     .attr("x", function (d,i) {
-        return (d.day * 60);
+        return (d.day * 60) - 20;
       })
     .attr("y", function (d,i) {
         return (d.game_of_day * -30) + 330;
@@ -591,6 +598,22 @@ var rectangle = svg.selectAll("rect").
     .attr("height", "28");
 
 
-</script>
 
-</html>
+
+    // var svg = d3.select("body")
+    //     .append("svg")
+    //     .attr("width", 200)
+    //     .attr("height", 100)
+    //     .style("border", "1px solid black");
+
+
+    // var imgs = svg.selectAll("image")
+    //     .data(data);
+    //     imgs.enter()
+    //     .append("svg:image")
+    //     .attr("xlink:href", "/assets/icons/minimap_hero_icon/" + data[1] + "_icon.png")
+    //     .attr("x", "60")
+    //     .attr("y", "60")
+    //     .attr("width", "20")
+    //     .attr("height", "20");
+</script>

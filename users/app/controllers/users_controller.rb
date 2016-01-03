@@ -27,11 +27,6 @@ class UsersController < ApplicationController
       sort_by {|i| grep(i).length }.last
     end
 
-    def initialize
-      @offline = []
-      @online = []
-      @away = []
-    end
 
   	def index
       redirect_to "/users/" + session[:user_id].to_s
@@ -64,6 +59,9 @@ class UsersController < ApplicationController
       @recent_game = HTTParty.get("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&steamid=" + @current_user.steam_id + "&format=json")
       # binding.pry
       dota = []
+      @offline = []
+      @online = []
+      @away = []
       begin
         @recent_game['response']['games'].each do |game|
           if game['appid']== 570
@@ -196,6 +194,8 @@ class UsersController < ApplicationController
       @match_history_icon.push(my_hash)
     end
     # @recent_matches = HTTParty.get("https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=73626CB2E22E10D9F4AB0D7ECBAF600B&account_id="+ @current_user.steam_id)
+
+    @players = Player.where(session[:user_id])
 
     respond_to do |format|
         format.html

@@ -63,18 +63,15 @@ nav{
 #background-wrapper{
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+2,828c95+41,3f4b60+94;dota */
 background: radial-gradient(ellipse at center,  rgba(181,189,200,1) 2%,rgba(130,140,149,1) 41%,rgba(63,75,96,1) 94%); /* W3C */
-height: 720px;
-width: 1400px;
-margin: 0;
-padding: 0;
-position: absolute;
-top: 0;
-left: 0;
-z-index: -1;
+height: 200vh;
+width: 100vw;
+margin-top: -30px;
+padding-top: 30px;
 }
 
 
 #main_display{
+  display: none;
   width: 75%;
   height: 80%;
   /*border: 2px solid blue;*/
@@ -99,10 +96,12 @@ z-index: -1;
 }
 
 #profile_display{
-  width: 100%;
-  height: 15%;
-  background-color: black;
-  opacity: .8;
+  width: 80%;
+  height: 6%;
+  margin-left: 10%;
+  margin-top: 0.5%;
+  margin-bottom: .75%;
+  background-color: rgba(18,41,66,0.6);
   color: white;
   /*border: 1px solid yellow;*/
 }
@@ -116,16 +115,15 @@ z-index: -1;
 
 #profile_stats{
   width: 100%;
-  height: 75%;
+  height: 35%;
   /*border: 1px solid purple;*/
 }
 
 #left_side{
-  
   vertical-align: top;
-  margin: 0;
+  margin-left: 10%;
   padding: 0;
-  width: 50%;
+  width: 30%;
   height: 100%;
   /*border: 1px solid violet;*/
   display: inline-block;
@@ -133,8 +131,8 @@ z-index: -1;
 
 #right_side{
   margin-left: 5px;
+  margin-top: 11px;
   vertical-align: top;
-  
   padding: 0;
   width: 49%;
   height: 100%;
@@ -192,9 +190,10 @@ z-index: -1;
   height: 24px;
 }
 #fav_hero_display {
+  /*display: none;*/
   margin-top: 3%;
   width: 100%;
-  height: 20%;
+  height: 15%;
   
 }
 #top_hero_bg{
@@ -213,7 +212,7 @@ z-index: -1;
   font-size: 12px;
 }
 #table-scroll {
-  height:375px;
+  height:360px;
   overflow:scroll;  
 }
 #table-wrapper table {
@@ -277,31 +276,25 @@ z-index: -1;
 .top_hero{
   width: 70px;
   height: 65px;
-  position: absolute;
+  display: inline-block;
+  border: 2px solid red;
 
 }
 
-.top_hero:nth-child(1){
-  left: 180px;
-  top: 202px;
+#user_match_display_menu{
+  width: 80%;
+  padding: 0;
+  margin-left: 10%;
+  background-color: rgba(18,41,66,0.6);
 }
-.top_hero:nth-child(2){
-  left: 260px;
-  top: 202px;
+#user_match_display_menu a{
+  color: white;
 }
-.top_hero:nth-child(3){
-  left: 340px;
-  top: 202px;
+#user_match_display_menu_option{
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 0%;
+  background-color: rgba(18,41,66,0.6);
 }
-.top_hero:nth-child(4){
-  left: 420px;
-  top: 202px;
-}
-.top_hero:nth-child(5){
-  left: 500px;
-  top: 202px;
-}
-
-
 
 

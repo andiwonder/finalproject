@@ -1,7 +1,8 @@
-$(document).ready(function(){
 
 console.log("whattttt");
 console.log("script.js");
+
+$(document).ready(function(){
 
 var w = 180,
   h = 180;

@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 
+//= require ./d3.v3.min.js
 //= require ./profile/RadarChart.js
+//= require ./profile/slick.js
 //= require ./profile/hero_selection.js
 //= require ./profile/script.js
-//= require ./profile/slick.js
-//= require ./d3.v3.min.js
 //= require ./parallax/main_parallax.js
 //= require ./semantic/semantic.min.js
 //= require bootstrap-slider.js
