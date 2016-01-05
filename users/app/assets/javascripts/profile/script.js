@@ -1,8 +1,10 @@
+var drawuserradar;
+drawuserradar = function (){
 
 console.log("whattttt");
 console.log("script.js");
+console.log($('#chart').length);
 
-$(document).ready(function(){
 
 var w = 180,
   h = 180;
@@ -88,4 +90,11 @@ var svg = d3.select('#body')
 
 
 
+
+};
+
+$(document).on('page:load', drawuserradar());
+
+$(document).ready(function(){
+  drawuserradar()
 });

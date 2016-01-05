@@ -18,6 +18,7 @@
 //= require ./profile/slick.js
 //= require ./profile/hero_selection.js
 //= require ./profile/script.js
+//= require ./profile/script2.js
 //= require ./parallax/main_parallax.js
 //= require ./semantic/semantic.min.js
 //= require bootstrap-slider.js
@@ -35,7 +36,7 @@
 //= require jquery.ui.widget
 //= require z.jquery.fileupload
 //= require ./app.js
-//= require_tree .
+
 
 //= require ./profile/match_card_slick.js
 
